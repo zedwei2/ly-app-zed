@@ -53,6 +53,7 @@
     "pinia": "2.0.33",
     "pinia-auto-refs": "0.0.6",
     "pinia-plugin-persist-uni": "1.2.0",
+    "ucharts": "^0.0.0",
     "vue": "3.2.47"
   },
   "devDependencies": {

@@ -29,76 +29,27 @@
       <text class="title">患者趋势</text>
       <text class="title">因素分析</text>
     </view>
+    <canvas ref="canvas"></canvas>
+
   </view>
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref, reactive, onMounted, nextTick } from "vue";
-// import { Chart } from "@antv/f2";
-// import "@antv/f2/lib/theme.js";
+import { defineComponent, ref, reactive, onMounted, nextTick, $ref } from "vue";
+import uCharts from 'ucharts'
 
-const staticInfo = {
-  totalNo: 12,
-  warningNo: 2,
-};
-
-// const myChart = ref(null);
-const drawChart = () => {
-  let dom = document.getElementById("myChart");
-  console.log(dom, "myChart====");
-  // 创建F2实例并绘制环形图
-  const chart = new Chart({
-    el: dom,
-    pixelRatio: uni.getSystemInfoSync().pixelRatio,
-  }); // 设置图表主题
-  return;
-  // 假设您有一个示例数据数组，例如：
-  const data = [
-    { name: "A", value: 100 },
-    { name: "B", value: 200 },
-    { name: "C", value: 150 },
-  ];
-
-  chart.source(data);
-
-  chart.coord("polar", {
-    transposed: true,
-    innerRadius: 0.6,
-    radius: 0.85,
-  });
-
-  chart.axis(false); // 关闭坐标轴
-  chart.legend(false);
-
-  chart.tooltip({
-    showTitle: false,
-    showCrosshairs: false,
-  });
-
-  chart.interval().position("name*value").style({
-    lineWidth: 1,
-    stroke: "#fff",
-  });
-
-  // 设置图表主题
-  chart.theme({
-    defaultColor: "#FF6B3B",
-    geometries: {
-      interval: {
-        rect: {
-          radius: [4, 4, 0, 0],
-        },
-      },
-    },
-  });
-
-  chart.render();
-};
-
-onMounted(() => {
-  nextTick(() => {
-    drawChart();
-  });
+new uCharts({
+  $this: $ref.canvas, // 传入canvas的引用
+  type: 'column', // 图表类型，可以根据需求选择
+  // 其他配置项...
+});
+// 绘制图表数据
+$ref.chart.setData({
+  categories: ['类别1', '类别2', '类别3'],
+  series: [
+    { name: '数据系列1', data: [30, 40, 20] },
+    // 其他数据系列...
+  ]
 });
 
 </script>
