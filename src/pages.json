@@ -1,6 +1,13 @@
 {
 	"pages": [
     {
+			"path": "pages/test/chart",
+			"style": {
+				"navigationBarTitleText": "chart",
+				"titleNView": false
+			}
+		},
+    {
 			"path": "pages/login/index",
 			"style": {
 				"navigationBarTitleText": "登录",
@@ -25,13 +32,6 @@
 			"path": "pages/my/index",
 			"style": {
 				"navigationBarTitleText": "我的",
-				"titleNView": false
-			}
-		},
-		{
-			"path": "pages/test/chart",
-			"style": {
-				"navigationBarTitleText": "chart",
 				"titleNView": false
 			}
 		}
