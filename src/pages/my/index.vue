@@ -63,30 +63,30 @@ const logout = () => {
   .top-info {
     display: flex;
     align-items: center;
-    padding: 50px 24px 16px;
+    padding: 50px 24px 16rpx;
     color: #fff;
     > image {
       border: 2px solid #fff;
-      border-radius: 64px;
-      width: 64px;
-      height: 64px;
+      border-radius: 64rpx;
+      width: 64rpx;
+      height: 64rpx;
     }
     > view {
       display: flex;
       flex-direction: column;
-      padding-left: 12px;
+      padding-left: 12rpx;
       font-weight: 500;
       .name {
-        font-size: 22px;
+        font-size: 22rpx;
       }
       .identity {
-        font-size: 14px;
+        font-size: 14rpx;
       }
     }
   }
   .content {
     flex: 1;
-    padding: 0 18px;
+    padding: 0 18rpx;
     > view {
       display: flex;
       justify-content: space-between;
@@ -100,39 +100,39 @@ const logout = () => {
         display: flex;
         align-items: center;
         image {
-          width: 20px;
-          height: 20px;
+          width: 20rpx;
+          height: 20rpx;
         }
         > text {
-          padding-left: 19px;
+          padding-left: 19rpx;
         }
       }
       .right {
         font-weight: 400;
-        font-size: 15px;
+        font-size: 15rpx;
         color: #92969a;
         > image {
-          margin-left: 10px;
-          width: 6px;
-          height: 11px;
+          margin-left: 10rpx;
+          width: 6rpx;
+          height: 11rpx;
         }
       }
     }
     .more {
       justify-content: space-around;
-      margin-top: 12px;
+      margin-top: 12rpx;
       > view {
-        width: 18px;
+        width: 18rpx;
       }
       > button {
-        padding-top: 10px;
-        padding-bottom: 10px;
+        padding-top: 10rpx;
+        padding-bottom: 10rpx;
         border: 1px solid #92969a;
-        border-radius: 10px;
+        border-radius: 10rpx;
         width: 100%;
         text-align: center;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 15rpx;
         color: #92969a;
       }
     }

@@ -105,24 +105,24 @@ onMounted(() => {
 
 <style scoped lang="scss">
 .statictis {
-  padding: 10px 16px;
+  padding: 10rpx 16rpx;
   .basic-info {
     display: flex;
     justify-content: space-around;
     > view:not(:last-child) {
-      margin-right: 10px;
+      margin-right: 10rpx;
     }
     > view {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      padding: 12px 14px;
-      border-radius: 4px;
+      padding: 12rpx 14rpx;
+      border-radius: 4rpx;
       width: 100%;
       background: #fff;
       .title {
         font-weight: 500;
-        font-size: 12px;
+        font-size: 12rpx;
         color: #4c5056;
       }
       .title1 {
@@ -130,10 +130,10 @@ onMounted(() => {
           display: inline-block;
           position: relative;
           top: 0;
-          margin-right: 6px;
-          border-radius: 2px;
-          width: 4px;
-          height: 10px;
+          margin-right: 6rpx;
+          border-radius: 2rpx;
+          width: 4rpx;
+          height: 10rpx;
           background: #007bff;
           content: '';
         }
@@ -143,33 +143,33 @@ onMounted(() => {
           display: inline-block;
           position: relative;
           top: 0;
-          margin-right: 6px;
-          border-radius: 2px;
-          width: 4px;
-          height: 10px;
+          margin-right: 6rpx;
+          border-radius: 2rpx;
+          width: 4rpx;
+          height: 10rpx;
           background: #ff4141;
           content: '';
         }
       }
       .number {
-        padding-left: 9px;
-        padding-top: 9px;
-        line-height: 22px;
+        padding-left: 9rpx;
+        padding-top: 9rpx;
+        line-height: 22rpx;
         font-weight: 700;
-        font-size: 22px;
+        font-size: 22rpx;
         color: rgba(0, 29, 69, 0.9);
       }
     }
   }
   .chart-content {
-    margin-top: 10px;
-    padding: 12px;
-    border-radius: 4px;
+    margin-top: 10rpx;
+    padding: 12rpx;
+    border-radius: 4rpx;
     background: #fff;
     .title {
-      line-height: 26px; /* 162.5% */
+      line-height: 26rpx; /* 162.5% */
       font-weight: 500;
-      font-size: 16px;
+      font-size: 16rpx;
       color: #242429;
     }
   }

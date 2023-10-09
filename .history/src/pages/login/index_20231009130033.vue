@@ -73,8 +73,8 @@ const login = () => {
   .left-icon {
     position: fixed;
     left: 0;
-    width: 175rpx;
-    height: 77rpx;
+    width: 175px;
+    height: 77px;
   }
   .top-title {
     display: flex;
@@ -86,16 +86,16 @@ const login = () => {
       flex: 1;
       > text {
         position: absolute;
-        left: 23rpx;
-        bottom: 30rpx;
-        font-size: 26rpx;
+        left: 23px;
+        bottom: 30px;
+        font-size: 26px;
         color: #fff;
       }
     }
     > image {
-      padding-top: 48rpx;
-      width: 141rpx;
-      height: 112rpx;
+      padding-top: 48px;
+      width: 141px;
+      height: 112px;
     }
   }
   .content {
@@ -104,38 +104,39 @@ const login = () => {
     justify-content: center;
     align-content: space-between;
     flex: 1;
-    border-radius: 24rpx 24rpx 0 0;
+    border-radius: 24px 24px 0 0;
     background: #fff;
-    font-size: 16rpx;
+    font-size: 16px;
     > form {
-      padding: 32rpx;
+      padding: 32px;
       width: 100%;
       .title {
-        padding-bottom: 12rpx;
+        padding-bottom: 12px;
         font-weight: 700;
-        font-size: 17rpx;
+        font-size: 17px;
       }
       .uni-form-item {
         padding: 12px 0;
         border-bottom: solid 1px #eef0f1;
         font-weight: 300;
-        font-size: 16rpx;
+        font-size: 16px;
       }
       button {
-        margin-top: 24rpx;
+        margin-top: 24px;
         background: linear-gradient(91deg, #45dde1 2.47%, #09ccd5 99.67%);
       }
     }
     .usr-agreement {
       display: flex;
       align-items: center;
-      padding: 12px 37rpx;
-      font-size: 14rpx;
+      padding: 12px 37px;
+      font-size: 14px;
+      font-size: 14px;
       color: #92969a;
       .checked {
-        padding-right: 3rpx;
-        width: 16rpx;
-        height: 16rpx;
+        padding-right: 3px;
+        width: 16px;
+        height: 16px;
       }
       text {
         color: #00bdc6;

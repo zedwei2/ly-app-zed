@@ -32,22 +32,22 @@ const changeDate = (index: number) => {
 .date-nav {
   display: flex;
   justify-content: space-around;
-  border-radius: 12px;
+  border-radius: 12rpx;
   background: #9ca4ab;
   .navTitle {
     display: flex;
     justify-content: center;
     width: 100%;
-    line-height: 22px; /* 137.5% */
+    line-height: 22rpx; /* 137.5% */
     font-weight: 500;
-    font-size: 16px;
+    font-size: 16rpx;
     > text {
-      padding: 16px;
+      padding: 16rpx;
     }
   }
   .active {
     position: relative;
-    border-radius: 12px;
+    border-radius: 12rpx;
     background: linear-gradient(91deg, #45dde1 2.47%, #09ccd5 99.67%);
     font-weight: 500;
     color: #fff;

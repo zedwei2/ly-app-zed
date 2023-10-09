@@ -258,8 +258,8 @@ const callPhone = (mobile: string) => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 32px;
-    padding: 12px 16px 24px;
+    margin-top: 32rpx;
+    padding: 12rpx 16rpx 24rpx;
     color: #fff;
     .search-input {
       display: flex;
@@ -267,34 +267,34 @@ const callPhone = (mobile: string) => {
       padding: 8px 0;
       width: 100%;
       background: rgba(236, 238, 244, 0.2);
-      font-size: 14px;
+      font-size: 14rpx;
       > image {
-        margin: 0 3px 0 12px;
-        width: 14px;
-        height: 14px;
+        margin: 0 3px 0 12rpx;
+        width: 14rpx;
+        height: 14rpx;
       }
     }
     .warning-info {
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 24px;
+      padding-top: 24rpx;
       .number {
         font-style: normal;
         font-weight: 700;
-        font-size: 40px;
+        font-size: 40rpx;
       }
     }
   }
   .content {
     flex: 1;
-    padding: 0 16px;
+    padding: 0 16rpx;
     .tab_nav {
       display: flex;
       justify-content: center;
       align-items: center;
       .navTitle {
-        margin-bottom: 12px;
+        margin-bottom: 12rpx;
         width: 100%;
         height: 90rpx;
         line-height: 90rpx;
@@ -313,7 +313,7 @@ const callPhone = (mobile: string) => {
         right: 0;
         bottom: 0;
         margin: auto;
-        width: 94px;
+        width: 94rpx;
         height: 8rpx;
         background-color: #00bdc6;
         content: '';
@@ -322,52 +322,52 @@ const callPhone = (mobile: string) => {
     .list-item {
       display: flex;
       flex-direction: column;
-      margin-bottom: 10px;
-      padding: 12px 10px;
+      margin-bottom: 10rpx;
+      padding: 12rpx 10px;
       background: #fff;
       .basic-info {
         display: flex;
         justify-content: space-between;
         align-items: center;
-        padding-bottom: 8px;
+        padding-bottom: 8rpx;
         > view {
           display: flex;
           align-items: center;
         }
         .left {
           font-weight: 500;
-          font-size: 16px;
+          font-size: 16rpx;
           color: #4c5056;
           > image {
-            margin-right: 10px;
-            width: 30px;
-            height: 30px;
+            margin-right: 10rpx;
+            width: 30rpx;
+            height: 30rpx;
           }
           > view {
             display: flex;
             flex-direction: column;
             .labels {
-              margin-right: 8px;
-              padding: 0 3px;
+              margin-right: 8rpx;
+              padding: 0 3rpx;
               border: solid 1px #ff5d63;
-              border-radius: 3px;
+              border-radius: 3rpx;
               font-weight: 500;
-              font-size: 10px;
+              font-size: 10rpx;
               color: #ff5d63;
             }
           }
         }
         .right {
           font-weight: 400;
-          font-size: 11px;
+          font-size: 11rpx;
           color: #4c5056;
           > image {
-            margin-right: 3px;
-            width: 18px;
-            height: 18px;
+            margin-right: 3rpx;
+            width: 18rpx;
+            height: 18rpx;
           }
           > text:not(:last-child) {
-            margin-right: 16px;
+            margin-right: 16rpx;
           }
         }
       }
@@ -375,7 +375,7 @@ const callPhone = (mobile: string) => {
         .data {
           display: flex;
           justify-content: space-around;
-          padding: 8px 10px;
+          padding: 8rpx 10rpx;
           background: #f5f5f9;
           > view {
             display: flex;
@@ -384,17 +384,17 @@ const callPhone = (mobile: string) => {
             align-items: center;
             .number {
               font-weight: 700;
-              font-size: 20px;
+              font-size: 20rpx;
               color: rgba(0, 29, 69, 0.9);
             }
             .name {
               font-weight: 400;
-              font-size: 12px;
+              font-size: 12rpx;
               color: #4c5056;
             }
             .unit {
               font-weight: 400;
-              font-size: 10px;
+              font-size: 10rpx;
               color: #a3a8ad;
             }
           }
@@ -407,12 +407,12 @@ const callPhone = (mobile: string) => {
       justify-content: center;
       align-items: center;
       font-weight: 400;
-      font-size: 14px;
+      font-size: 14rpx;
       color: #000;
       > image {
-        margin-bottom: 13px;
-        width: 138px;
-        height: 112px;
+        margin-bottom: 13rpx;
+        width: 138rpx;
+        height: 112rpx;
       }
     }
   }
