@@ -1,9 +1,9 @@
 {
 	"pages": [
     {
-			"path": "pages/test/chart",
+			"path": "pages/patient-detail/index",
 			"style": {
-				"navigationBarTitleText": "chart",
+				"navigationBarTitleText": "患者详情",
 				"titleNView": false
 			}
 		},
@@ -32,6 +32,13 @@
 			"path": "pages/my/index",
 			"style": {
 				"navigationBarTitleText": "我的",
+				"titleNView": false
+			}
+		},
+    {
+			"path": "pages/test/chart",
+			"style": {
+				"navigationBarTitleText": "chart",
 				"titleNView": false
 			}
 		}
