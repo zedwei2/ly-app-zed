@@ -1,0 +1,60 @@
+module.exports = {
+  extends: ['stylelint-config-standard'],
+  plugins: ['stylelint-order', 'stylelint-scss'],
+  overrides: [
+    {
+      files: ['**/*.scss'],
+      customSyntax: 'postcss-scss',
+    },
+    {
+      files: ['*.html', '**/*.{html,vue}'],
+      customSyntax: 'postcss-html',
+    },
+  ],
+  rules: {
+    indentation: 2,
+    'block-closing-brace-newline-after': [
+      'always',
+      {
+        ignoreAtRules: ['if', 'else'],
+      },
+    ],
+    'string-quotes': 'single',
+    'alpha-value-notation': 'number',
+    'at-rule-empty-line-before': 'never',
+    'at-rule-no-unknown': [
+      true,
+      {
+        ignoreAtRules: [
+          'content',
+          'each',
+          'error',
+          'extend',
+          'for',
+          'function',
+          'if',
+          'else',
+          'include',
+          'mixin',
+          'return',
+          'while',
+        ],
+      },
+    ],
+    'selector-type-no-unknown': [true, { ignoreTypes: ['page', 'radio', 'checkbox'] }],
+    'number-leading-zero': 'always',
+    'unit-no-unknown': [true, { ignoreUnits: ['rpx'] }],
+    'declaration-block-no-redundant-longhand-properties': null,
+    'color-function-notation': 'legacy',
+    'color-hex-case': 'lower',
+    'comment-empty-line-before': 'never',
+    'declaration-colon-newline-after': null,
+    'declaration-empty-line-before': 'never',
+    'function-linear-gradient-no-nonstandard-direction': null,
+    'no-descending-specificity': null,
+    'no-empty-source': null,
+    'no-missing-end-of-source-newline': null,
+    'order/order': ['custom-properties', 'declarations'],
+    'rule-empty-line-before': 'never',
+  },
+}
