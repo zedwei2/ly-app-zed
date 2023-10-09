@@ -1,6 +1,6 @@
 {
-  "name": "uni-preset-vue",
-  "version": "0.0.9",
+  "name": "ly-app-zed",
+  "version": "0.0.1",
   "scripts": {
     "dev": "npm run dev:h5",
     "build": "npm run build:h5",
@@ -53,7 +53,6 @@
     "pinia": "2.0.33",
     "pinia-auto-refs": "0.0.6",
     "pinia-plugin-persist-uni": "1.2.0",
-    "ucharts": "^0.0.0",
     "vue": "3.2.47"
   },
   "devDependencies": {
