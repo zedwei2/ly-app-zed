@@ -35,22 +35,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineComponent, ref, reactive, onMounted, nextTick, $ref } from "vue";
-import uCharts from 'ucharts'
+import { defineComponent, ref, reactive, onMounted, nextTick } from "vue";
 
-new uCharts({
-  $this: $ref.canvas, // 传入canvas的引用
-  type: 'column', // 图表类型，可以根据需求选择
-  // 其他配置项...
-});
-// 绘制图表数据
-$ref.chart.setData({
-  categories: ['类别1', '类别2', '类别3'],
-  series: [
-    { name: '数据系列1', data: [30, 40, 20] },
-    // 其他数据系列...
-  ]
-});
 
 </script>
 
