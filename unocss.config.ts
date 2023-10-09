@@ -1,7 +1,6 @@
 import type { Preset, Rule } from 'unocss';
 import { defineConfig, presetAttributify, presetUno } from 'unocss';
 
-import presetRemToRpx from './preset-rem-to-rpx';
 
 const sizeMapping: Record<string, string> = {
   fs: 'font-size'
@@ -18,9 +17,6 @@ export default defineConfig({
   presets: [
     presetAttributify(),
     presetUno(),
-    presetRemToRpx({
-      baseFontSize: 4
-    }) as Preset
   ],
   theme: {
     preflightRoot: ['page,::before,::after']

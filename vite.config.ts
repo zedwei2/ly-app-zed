@@ -1,6 +1,5 @@
 import { resolve } from 'node:path';
 import uni from '@dcloudio/vite-plugin-uni';
-import AutoImportTypes from 'auto-import-types';
 import PiniaAutoRefs from 'pinia-auto-refs';
 import Unocss from 'unocss/vite';
 import AutoImport from 'unplugin-auto-import/vite';
@@ -17,7 +16,6 @@ export default defineConfig({
     }
   },
   plugins: [
-    AutoImportTypes(),
     PiniaAutoRefs(),
     AutoImport({
       dts: 'src/auto-imports.d.ts',
