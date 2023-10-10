@@ -130,7 +130,6 @@ const realTimeData = [
   }
   .patient-detail-card {
     height: 120rpx;
-    background: #edfafb;
     border-radius: 24rpx;
     padding: 32rpx;
     display: flex;
@@ -144,123 +143,113 @@ const realTimeData = [
       width: 164rpx;
       height: 160rpx;
     }
-    .desc {
-      flex: 1;
-      margin-left: 28rpx;
-      .desc-name {
-        color: #242429;
-        font-size: 40rpx;
-        font-weight: 500;
-        margin-bottom: 8rpx;
+    .desc-sex {
+      display: flex;
+      align-items: center;
+      color: #92969a;
+      font-size: 28rpx;
+      .icon {
+        margin: 0 8rpx;
       }
-      .desc-sex {
-        display: flex;
-        align-items: center;
-        color: #92969a;
-        font-size: 28rpx;
-        .icon {
-          margin: 0 8rpx;
+    }
+  }
+}
+.patient-detail-content {
+  padding: 0 8rpx;
+  .detail-content-medical {
+    margin-top: 60rpx;
+    > text {
+      color: #242429;
+      font-size: 32rpx;
+      font-weight: 500;
+      line-height: 52rpx;
+    }
+    .content-medical {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 48rpx;
+      .medical-item {
+        text-align: center;
+        image {
+          width: 88rpx;
+          height: 88rpx;
+          margin-bottom: 12rpx;
+        }
+        .text {
+          color: #92969a;
+          font-size: 28rpx;
+          line-height: 28rpx;
         }
       }
     }
   }
-  .patient-detail-content {
-    padding: 0 8rpx;
-    .detail-content-medical {
-      margin-top: 60rpx;
-      > text {
+  .detail-content-time {
+    margin-top: 100rpx;
+    .content-time-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 48rpx;
+      .title {
         color: #242429;
         font-size: 32rpx;
         font-weight: 500;
         line-height: 52rpx;
+        flex: 1;
       }
-      .content-medical {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 48rpx;
-        .medical-item {
-          text-align: center;
-          image {
-            width: 88rpx;
-            height: 88rpx;
-            margin-bottom: 12rpx;
-          }
-          .text {
-            color: #92969a;
-            font-size: 28rpx;
-            line-height: 28rpx;
-          }
-        }
+      image {
+        margin-top: 4rpx;
+        width: 28rpx;
+        height: 28rpx;
+      }
+      .view {
+        color: #007bff;
+        font-size: 28rpx;
+        line-height: 44rpx;
       }
     }
-    .detail-content-time {
-      margin-top: 100rpx;
-      .content-time-title {
+    .content-time-body {
+      display: flex;
+      flex-wrap: wrap;
+      .time-body-item {
+        text-align: center;
         display: flex;
         justify-content: space-between;
-        align-items: center;
-        margin-bottom: 48rpx;
-        .title {
-          color: #242429;
-          font-size: 32rpx;
-          font-weight: 500;
-          line-height: 52rpx;
-          flex: 1;
+        margin-bottom: 52rpx;
+        width: 290rpx;
+        &:nth-child(odd) {
+          margin-right: auto;
         }
         image {
-          margin-top: 4rpx;
-          width: 28rpx;
-          height: 28rpx;
+          width: 88rpx;
+          height: 88rpx;
+          margin-bottom: 12rpx;
         }
-        .view {
-          color: #007bff;
+        .desc {
+          color: #92969a;
           font-size: 28rpx;
-          line-height: 44rpx;
-        }
-      }
-      .content-time-body {
-        display: flex;
-        flex-wrap: wrap;
-        .time-body-item {
-          text-align: center;
-          display: flex;
-          justify-content: space-between;
-          margin-bottom: 52rpx;
-          width: 290rpx;
-          &:nth-child(odd) {
-            margin-right: auto;
-          }
-          image {
-            width: 88rpx;
-            height: 88rpx;
-            margin-bottom: 12rpx;
-          }
-          .desc {
-            color: #92969a;
-            font-size: 28rpx;
-            line-height: 28rpx;
-            flex: 1;
-            text-align: left;
-            margin: 12rpx 0 12rpx 18rpx;
-            .desc-text {
-              color: #4c5056;
-              font-size: 30rpx;
-              line-height: 32rpx;
-              margin-bottom: 4rpx;
-            }
-            .desc-time {
-              color: #a3a8ad;
-              font-size: 20rpx;
-              line-height: 24rpx;
-            }
-          }
-          .value {
-            margin: 12rpx 0;
+          line-height: 28rpx;
+          flex: 1;
+          text-align: left;
+          margin: 12rpx 0 12rpx 18rpx;
+          .desc-text {
             color: #4c5056;
-            font-size: 32rpx;
-            font-weight: 700;
+            font-size: 30rpx;
             line-height: 32rpx;
+            margin-bottom: 4rpx;
           }
+          .desc-time {
+            color: #a3a8ad;
+            font-size: 20rpx;
+            line-height: 24rpx;
+          }
+        }
+        .value {
+          margin: 12rpx 0;
+          color: #4c5056;
+          font-size: 32rpx;
+          font-weight: 700;
+          line-height: 32rpx;
         }
       }
     }
