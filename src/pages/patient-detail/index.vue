@@ -4,7 +4,7 @@
     :class="isWarining ? 'common-warning-bg' : 'common-success-bg'"
   >
     <view class="patient-detail-title">{{
-      `${isWarining ? "异常预警" : "健康"}`
+      `${isWarining ? "异常预警" : "健康1"}`
     }}</view>
     <view class="patient-detail-card">
       <image src="@/static/patient-list/touxiang.png" mode="scaleToFill" />
