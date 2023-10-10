@@ -5,11 +5,7 @@
       src="@/static/patient-list/focus.png"
       mode="scaleToFill"
     />
-    <image
-      v-else
-      src="@/static/patient-list/unfocus.png"
-      mode="scaleToFill"
-    />
+    <image v-else src="@/static/patient-list/unfocus.png" mode="scaleToFill" />
     <view>关注</view>
     <image
       src="@/static/patient-list/call.png"
@@ -19,25 +15,26 @@
     <view>呼叫</view>
   </view>
 </template>
-
 <script setup lang="ts">
 /**
  * 定义传入组件的参数
  */
 defineProps({
-  isFocus: {  // 是否关注
+  isFocus: {
+    // 是否关注
     type: Boolean,
-    default: false
+    default: false,
   },
-  phone: {   // 电话号码
+  phone: {
+    // 电话号码
     type: String,
-    default: ''
-  }
+    default: "",
+  },
 });
 
 /**
  * 拨打电话
- * @param mobile 
+ * @param mobile
  */
 const callPhone = (mobile: string) => {
   // 手机号
@@ -47,30 +44,27 @@ const callPhone = (mobile: string) => {
   if (
     mobile &&
     ((Number(mobile) === 11 && phoneReg.test(mobile)) ||
-      (mobile.length == 13 &&
-        mobile.indexOf("-") != -1 &&
-        tel.test(mobile)))
+      (mobile.length == 13 && mobile.indexOf("-") != -1 && tel.test(mobile)))
   ) {
     uni.makePhoneCall({
       phoneNumber: mobile,
     });
   }
 };
-
 </script>
 
 <style scoped lang="scss">
-  .focus-call-wrapper {
-    display: flex;
-    font-size: 22rpx;
-    color: #4c5056;
-    > image {
-      margin-right: 8rpx;
-      width: 36rpx;
-      height: 36rpx;
-    }
-    > uni-view:not(:last-child) {
-      margin-right: 32rpx;
-    }
+.focus-call-wrapper {
+  display: flex;
+  font-size: 22rpx;
+  color: #4c5056;
+  > image {
+    margin-right: 8rpx;
+    width: 36rpx;
+    height: 36rpx;
   }
+  > uni-view:not(:last-child) {
+    margin-right: 32rpx;
+  }
+}
 </style>
