@@ -1,59 +1,3 @@
-<script setup lang="ts">
-import FocusCall from '@/components/focus-call/index.vue'
-import treasure from '@/static/patient-detail/treasure.png'
-import reserve from '@/static/patient-detail/reserve.png'
-import early from '@/static/patient-detail/early.png'
-import heartRate from '@/static/patient-detail/heart-rate.png'
-import bloodPressure from '@/static/patient-detail/blood-pressure.png'
-import bloodOxygen from '@/static/patient-detail/blood-oxygen.png'
-import bloodSugar from '@/static/patient-detail/blood-sugar.png'
-
-
-// 患者医疗数据
-const medicalData = [
-  {
-    icon: early,
-    text: '预警记录'
-  },
-  {
-    icon: reserve,
-    text: '预留功能'
-  },
-  {
-    icon: treasure,
-    text: '预留功能'
-  }
-]
-
-// 实时数据
-const realTimeData = [
-  {
-    icon: heartRate,
-    text: '心率',
-    time: '16:15',
-    value: '95',
-  },
-  {
-    icon: bloodPressure,
-    text: '血压',
-    time: '16:15',
-    value: '136/78',
-  },
-  {
-    icon: bloodOxygen,
-    text: '血氧',
-    time: '16:15',
-    value: '98',
-  },
-  {
-    icon: bloodSugar,
-    text: '血糖',
-    time: '16:15',
-    value: '6',
-  }
-]
-</script>
-
 <template>
   <view class="patient-detail-wrapper">
     <view class="patient-detail-title">{{ '健康' }}</view>
@@ -114,9 +58,64 @@ const realTimeData = [
   </view>
 </template>
 
+<script setup lang="ts">
+import FocusCall from '@/components/focus-call/index.vue'
+import treasure from '@/static/patient-detail/treasure.png'
+import reserve from '@/static/patient-detail/reserve.png'
+import early from '@/static/patient-detail/early.png'
+import heartRate from '@/static/patient-detail/heart-rate.png'
+import bloodPressure from '@/static/patient-detail/blood-pressure.png'
+import bloodOxygen from '@/static/patient-detail/blood-oxygen.png'
+import bloodSugar from '@/static/patient-detail/blood-sugar.png'
+
+
+// 患者医疗数据
+const medicalData = [
+  {
+    icon: early,
+    text: '预警记录'
+  },
+  {
+    icon: reserve,
+    text: '预留功能'
+  },
+  {
+    icon: treasure,
+    text: '预留功能'
+  }
+]
+
+// 实时数据
+const realTimeData = [
+  {
+    icon: heartRate,
+    text: '心率',
+    time: '16:15',
+    value: '95',
+  },
+  {
+    icon: bloodPressure,
+    text: '血压',
+    time: '16:15',
+    value: '136/78',
+  },
+  {
+    icon: bloodOxygen,
+    text: '血氧',
+    time: '16:15',
+    value: '98',
+  },
+  {
+    icon: bloodSugar,
+    text: '血糖',
+    time: '16:15',
+    value: '6',
+  }
+]
+</script>
+
 <style lang="scss">
   .patient-detail-wrapper {
-    background: #F2F2F2;
     padding: 0 32rpx;
     .patient-detail-title {
       text-align: center;
@@ -129,7 +128,6 @@ const realTimeData = [
     }
     .patient-detail-card {
       height: 120rpx;
-      background: #EDFAFB;
       border-radius: 24rpx;
       padding: 32rpx;
       display: flex;
