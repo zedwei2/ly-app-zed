@@ -50,16 +50,28 @@
 		{
 		  "root": "pages",
 		  "pages": [
-			{
-				"name": "patient-detail",
-				"path": "patient-detail/index",
-				"style": {
-				  "navigationBarTitleText": "患者详情"
-				}
-			}
+        {
+          "name": "patient-detail",
+          "path": "patient-detail/index",
+          "style": {
+            "navigationBarTitleText": "患者详情"
+          }
+        }
+		  ]
+		},
+		{
+		  "root": "pages",
+		  "pages": [
+        {
+          "name": "patient-heart-rate",
+          "path": "patient-detail/patient-heart-rate/index",
+          "style": {
+            "navigationBarTitleText": "心率详情"
+          }
+        }
 		  ]
 		}
-	  ],
+  ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",

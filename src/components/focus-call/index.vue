@@ -1,3 +1,25 @@
+<template>
+  <view class="focus-call-wrapper">
+    <image
+      v-if="isFocus"
+      src="@/static/patient-list/focus.png"
+      mode="scaleToFill"
+    />
+    <image
+      v-else
+      src="@/static/patient-list/unfocus.png"
+      mode="scaleToFill"
+    />
+    <view>关注</view>
+    <image
+      src="@/static/patient-list/call.png"
+      mode="scaleToFill"
+      @click="callPhone(phone)"
+    />
+    <view>呼叫</view>
+  </view>
+</template>
+
 <script setup lang="ts">
 /**
  * 定义传入组件的参数
@@ -36,28 +58,6 @@ const callPhone = (mobile: string) => {
 };
 
 </script>
-
-<template>
-  <view class="focus-call-wrapper">
-    <image
-      v-if="isFocus"
-      src="@/static/patient-list/focus.png"
-      mode="scaleToFill"
-    />
-    <image
-      v-else
-      src="@/static/patient-list/unfocus.png"
-      mode="scaleToFill"
-    />
-    <view>关注</view>
-    <image
-      src="@/static/patient-list/call.png"
-      mode="scaleToFill"
-      @click="callPhone(phone)"
-    />
-    <view>呼叫</view>
-  </view>
-</template>
 
 <style scoped lang="scss">
   .focus-call-wrapper {
