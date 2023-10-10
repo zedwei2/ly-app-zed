@@ -56,6 +56,13 @@
 				"style": {
 				  "navigationBarTitleText": "患者详情"
 				}
+			},
+			{
+				"name": "hr-detail",
+				"path": "patient-detail/component/hr-detail",
+				"style": {
+				  "navigationBarTitleText": "心率详情"
+				}
 			}
 		  ]
 		}

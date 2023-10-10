@@ -4,7 +4,7 @@
     :class="isWarining ? 'common-warning-bg' : 'common-success-bg'"
   >
     <view class="patient-detail-title">{{
-      `${isWarining ? "异常预警" : "健康1"}`
+      `${isWarining ? "异常预警" : "健康"}`
     }}</view>
     <view class="patient-detail-card">
       <image src="@/static/patient-list/touxiang.png" mode="scaleToFill" />
@@ -44,6 +44,7 @@
             class="time-body-item"
             v-for="item in realTimeData"
             :key="item.text"
+            @click="toDetail(item)"
           >
             <image :src="item.icon" mode="aspectFit" />
             <view class="desc">
@@ -68,6 +69,7 @@ import heartRate from "@/static/patient-detail/heart-rate.png";
 import bloodPressure from "@/static/patient-detail/blood-pressure.png";
 import bloodOxygen from "@/static/patient-detail/blood-oxygen.png";
 import bloodSugar from "@/static/patient-detail/blood-sugar.png";
+import { forward } from "@/utils/router";
 
 const isWarining = ref<boolean>(false);
 
@@ -94,18 +96,21 @@ const realTimeData = [
     text: "心率",
     time: "16:15",
     value: "95",
+    key: "hr",
   },
   {
     icon: bloodPressure,
     text: "血压",
     time: "16:15",
     value: "136/78",
+    key: "bp",
   },
   {
     icon: bloodOxygen,
     text: "血氧",
     time: "16:15",
     value: "98",
+    key: "bo",
   },
   {
     icon: bloodSugar,
@@ -114,6 +119,13 @@ const realTimeData = [
     value: "6",
   },
 ];
+
+const toDetail = (item: any) => {
+  console.log("item====", item);
+  if (item.key) {
+    forward(`${item.key}-detail`);
+  }
+};
 </script>
 
 <style lang="scss">
