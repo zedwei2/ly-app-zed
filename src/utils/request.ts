@@ -4,6 +4,7 @@ import { getCommonParams } from '@/config/commonParams';
 import env from '@/config/env';
 import { hideLoading, showLoading } from '@/config/serviceLoading';
 
+
 function reject(err: { errno: number; errmsg: string }) {
   const { errmsg = 'error', errno = -1 } = err;
   switch (errno) {
@@ -22,6 +23,13 @@ function reject(err: { errno: number; errmsg: string }) {
 
 // h5环境开启代理
 const apiBaseUrl = isH5 && isDevelopment ? '/api' : env.apiBaseUrl;
+
+// TBD：路由拦截 后续做token鉴权逻辑
+uni.addInterceptor('request', {
+  invoke(args) {
+    args.url = apiBaseUrl + args.url
+  }
+})
 
 function baseRequest(
   method:
