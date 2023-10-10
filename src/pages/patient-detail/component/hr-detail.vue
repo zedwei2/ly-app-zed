@@ -1,31 +1,12 @@
 <template>
-  <view class="date-nav">
-    <view
-      class="navTitle"
-      v-for="(item, index) in dateList"
-      :key="index"
-      :class="{ active: isActive === index }"
-      @click="changeDate(index)"
-    >
-      <text>{{ item.label }}</text>
-    </view>
+  <view class="hr-detail">
+    <dateBar />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-
-const dateList = [
-    { key: "day", label: "日", index: 0 },
-    { key: "week", label: "周", index: 1 },
-    { key: "month", label: "月", index: 2 },
-    { key: "year", label: "年", index: 3 },
-  ],
-  isActive = ref(0);
-
-const changeDate = (index: number) => {
-  isActive.value = index;
-};
+import dateBar from "./date-bar.vue";
 </script>
 
 <style scoped lang="less">

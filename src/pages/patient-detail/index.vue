@@ -121,7 +121,6 @@ const realTimeData = [
 ];
 
 const toDetail = (item: any) => {
-  console.log("item====", item);
   if (item.key) {
     forward(`${item.key}-detail`);
   }
@@ -147,10 +146,7 @@ const toDetail = (item: any) => {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    // fill: linear-gradient(2deg, rgba(255, 255, 255, 0.86) 3.76%, rgba(255, 255, 255, 0.86) 81.42%, rgba(255, 255, 255, 0.84) 98.97%);
-    // box-shadow: -4rpx -4rpx 0rpx 0rpx rgba(255, 255, 255, 0.60) inset, 2rpx 2rpx 0rpx 0rpx rgba(255, 255, 255, 0.60) inset;
-    // filter: drop-shadow(0rpx 12rpx 30rpx rgba(21, 73, 99, 0.13));
-    // backdrop-filter: blur(80rpx);
+    background-color: rgba(255, 255, 255, 0.8);
     > image {
       width: 164rpx;
       height: 160rpx;
