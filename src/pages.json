@@ -70,6 +70,13 @@
 				"style": {
 				  "navigationBarTitleText": "血氧饱和度"
 				}
+			},
+			{
+				"name": "bp-detail",
+				"path": "kpi-detail/blood-pressure-detail",
+				"style": {
+				  "navigationBarTitleText": "血压"
+				}
 			}
 		  ]
 		}

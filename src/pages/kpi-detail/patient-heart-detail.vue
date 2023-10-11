@@ -3,12 +3,12 @@
     <dateBar />
     <weeekAreaChart />
     <view class="hr-card">
-      <view  
-        class="hr-card-item"
-        v-for="item in hrCardData"
-        :key="item.title">
+      <view class="hr-card-item" v-for="item in hrCardData" :key="item.title">
         <view class="title">{{ item.title }}</view>
-        <view class="value"><text>{{ item.value }}</text>次/分钟</view>
+        <view class="value"
+          ><text>{{ item.value }}</text
+          >次/分钟</view
+        >
       </view>
     </view>
   </view>
@@ -20,23 +20,22 @@ import dateBar from "./component/date-bar.vue";
 import weeekAreaChart from "./component/week-area-chart.vue";
 const hrCardData = [
   {
-    title: '心率范围',
-    value: '60-103'
+    title: "心率范围",
+    value: "60-103",
   },
   {
-    title: '平均静息心率',
-    value: '68'
+    title: "平均静息心率",
+    value: "68",
   },
   {
-    title: '心率过高',
-    value: '--'
+    title: "心率过高",
+    value: "--",
   },
   {
-    title: '心率过低',
-    value: '--'
+    title: "心率过低",
+    value: "--",
   },
-]
-
+];
 </script>
 
 <style scoped lang="less">
@@ -47,13 +46,13 @@ const hrCardData = [
     flex-wrap: wrap;
     margin-top: 32rpx;
     .hr-card-item {
-      flex-basis: calc(50% - 68rpx); 
-      border: 2rpx solid #E9EEF0;
+      flex-basis: calc(50% - 68rpx);
+      border: 2rpx solid #e9eef0;
       margin-bottom: 30rpx;
       border-radius: 20rpx;
       padding: 24rpx;
       &:first-child {
-        background: #FF6C71;
+        background: #ff6c71;
         color: white;
       }
       &:nth-child(odd) {
@@ -61,7 +60,7 @@ const hrCardData = [
       }
       .title {
         font-size: 24rpx;
-        line-height: 24rpx; 
+        line-height: 24rpx;
         margin-bottom: 20rpx;
       }
       .value {
