@@ -1,10 +1,11 @@
 <template>
    <view class="hr-chart">
       <view class="hr-chart-title"><text>89%-100%</text></view>
-        <qiun-data-charts 
+      <qiun-data-charts 
           type="candle"
           :opts="chart.opts"
           :chartData="chart.chartData"
+        
         />
       <view
         class="custom-xaxis"
@@ -14,10 +15,14 @@
           :class="item.isActive ? 'active' : ''"
           :key="item.name">{{ item.name }}</text>
       </view>
+      <tipLegend :tipData="legendData"/>
+
     </view>
 </template>
 
 <script lang="ts" setup>
+import tipLegend from './tip-legend.vue'
+
 const xAxisData = [
   {
     name: '1',
@@ -72,7 +77,7 @@ const xAxisData = [
 const chart = {
   chartData: {
     categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],   
-    series: [
+        series: [
       {
         name: 'dada',
         data: [
@@ -88,12 +93,15 @@ const chart = {
           [0,0,0,0],
           [0,0,0,0],
           [0,0,0,0],
+
         ]
       }
     ]
   },
   opts: {
-        color: ["#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1"],
+        rotate: false,
+        rotateLock: false,
+        color: ["#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71"],
         padding: [15,4,10,4],
         dataLabel: false,
         enableScroll: false,
@@ -108,10 +116,9 @@ const chart = {
           data: [
             {
               axisLine: false,
-              format: "yAxisDemo1",
               fontColor: '#92969A',
-              min: 0,
-              max: 100
+              min: 40,
+              max: 140
             }
           ]
         },
@@ -124,6 +131,18 @@ const chart = {
         }
       }
 };
+
+const legendData = [{
+  name: '<70%',
+  icon: 'dangerous'
+},{
+  name: '70-89%',
+  icon: 'warning'
+},{
+  name: '≥90%',
+  icon: 'success'
+}
+]
 
 
 </script>
@@ -159,7 +178,7 @@ const chart = {
       text {
         width: 32rpx;
         height: 32rpx;
-        line-height: 32rpx; /* 166.667% */
+        line-height: 32rpx; 
         &.active {
           color: #fff;
           border-radius: 8rpx;
