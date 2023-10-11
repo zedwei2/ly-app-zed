@@ -20,7 +20,10 @@
       @click-right="onClickRight"
     >
       <template #right>
-        <van-icon name="arrow" size="16" color="#333333" />
+        <van-icon name="arrow" size="12" color="#333333" />
+      </template>
+      <template #left>
+        <van-icon name="arrow-left" size="12" color="#333333" />
       </template>
     </van-nav-bar>
   </view>

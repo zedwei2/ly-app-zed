@@ -59,7 +59,7 @@
 			},
 			{
 				"name": "hr-detail",
-				"path": "kpi-detail/hr-detail",
+				"path": "kpi-detail/patient-heart-detail",
 				"style": {
 				  "navigationBarTitleText": "心率详情"
 				}
