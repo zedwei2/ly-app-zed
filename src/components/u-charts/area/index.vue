@@ -1,6 +1,6 @@
 <template>
   <view class="charts-box">
-    <QiunDataCharts
+    <qiun-data-charts
       type="area"
       :opts="chartData.opts"
       :chart-data="chartData.data"
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { ref, toRefs } from "vue";
-import QiunDataCharts from "@/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue";
 
 const props = defineProps({
   areaData: {
@@ -24,7 +23,7 @@ const { areaData } = toRefs(props);
 const chartData = ref({
   opts: {
     color: [
-      "#1890FF",
+      "#43B9BE", //线条颜色
       "#91CB74",
       "#FAC858",
       "#EE6666",
@@ -34,9 +33,12 @@ const chartData = ref({
       "#9A60B4",
       "#ea7ccc",
     ],
-    padding: [15, 0, 0, 15],
+    padding: [],
     enableScroll: false,
-    legend: {},
+    dataPointShape: false, //不展示数据点
+    legend: {
+      show: false, //是否展示图例
+    },
     xAxis: {
       disableGrid: true,
     },

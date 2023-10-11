@@ -30,12 +30,14 @@
         </view>
       </view>
       <view class="chart-content trend">
-        <text class="title">患者趋势</text>
-        <view class="trend">
+        <view>
+          <text class="title">患者趋势</text>
+        </view>
+        <view class="trend chart">
           <areaChart :areaData="trendData" />
         </view>
         <text class="title">因素分析</text>
-        <view class="reason-analysis">
+        <view class="reason-analysis chart">
           <funnelChart :reasonData="reasonData" />
         </view>
       </view>
@@ -91,7 +93,7 @@ const trendData = reactive({
   categories: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月"],
   series: [
     {
-      data: [35, 8, 25, 37, 4, 20, 8, 25, 37],
+      data: [35, 38, 35, 37, 24, 30, 28, 25, 37],
     },
   ],
 });
@@ -192,6 +194,9 @@ const reasonData = reactive([
     }
     .reason-analysis {
       width: 100%;
+    }
+    > view {
+      margin-bottom: 15px;
     }
   }
 }

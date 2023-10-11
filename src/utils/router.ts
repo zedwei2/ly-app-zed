@@ -32,11 +32,17 @@ export function onUrlPage(e: any) {
 /**跳转下一级页面 */
 export function forward(name: string, query: Types.Query = {}): any {
   const usrObj = uni.getStorageSync("userInfo");
-  const token = JSON.parse(usrObj).token;
-  if (!whiteList.includes(name) && !token) return;
+  const token = usrObj && JSON.parse(usrObj).token;
+  if (!whiteList.includes(name) && !usrObj && !token) {
+    uni.reLaunch({
+      url: "/pages/login/index",
+    });
+    return;
+  }
 
   const targetPage = pagesMap.find((i) => i.name === name);
   if (!targetPage) return;
+  console.log("targetPage===", targetPage);
   const isReplace = query.replace;
   delete query.replace;
   const { type, path } = targetPage;

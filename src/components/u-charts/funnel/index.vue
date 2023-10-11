@@ -1,6 +1,6 @@
 <template>
   <view class="charts-box">
-    <QiunDataCharts
+    <qiun-data-charts
       type="funnel"
       :opts="chartData.opts"
       :chart-data="chartData.data"
@@ -10,7 +10,6 @@
 
 <script setup lang="ts">
 import { ref, toRefs } from "vue";
-import QiunDataCharts from "@/uni_modules/qiun-data-charts/components/qiun-data-charts/qiun-data-charts.vue";
 
 const props = defineProps({
   reasonData: {
@@ -34,8 +33,11 @@ const chartData = ref({
       "#9A60B4",
       "#ea7ccc",
     ],
-    padding: [15, 15, 0, 15],
+    padding: [15, 60, 0, 0],
     enableScroll: false,
+    legend: {
+      show: false, //是否展示图例
+    },
     extra: {
       funnel: {
         activeOpacity: 0.3,
@@ -48,6 +50,10 @@ const chartData = ref({
         linearType: "custom",
         minSize: 20,
       },
+      markLine: {
+        showLabel: false, // 启用标签显示
+        labelText: "{b}: {c}", // 标签格式化，{b} 表示标签名，{c} 表示标签值
+      },
     },
   },
   data: {
@@ -58,7 +64,9 @@ const chartData = ref({
             name: item.name,
             value: item.value,
             centerText: item.value.toString(),
-            // labelShow:false
+            labelText: `${item.name} ${item.value}`, // 标签
+            labelFontSize: 10,
+            // labelShow: false,
           };
         }),
       },
