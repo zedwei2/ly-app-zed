@@ -35,6 +35,8 @@ const chartData = ref({
       "#9A60B4",
       "#ea7ccc",
     ],
+    dataLabel: false,
+    dataPointShape: false, //不展示数据点
     padding: [15, 10, 0, 15],
     enableScroll: false,
     legend: {},
@@ -42,12 +44,14 @@ const chartData = ref({
       disableGrid: true,
       boundaryGap: "justify",
       format: "xAxisDemo2",
+      axisLine: false,
     },
     yAxis: {
       gridType: "dash",
       dashLength: 2,
       data: [
         {
+          axisLine: false,
           min: 40,
           max: 200,
         },
@@ -75,6 +79,23 @@ const chartData = ref({
           [70000, 140],
           [90000, 140],
         ],
+        markLine: {
+          symbol: ["none", "none"], // 去掉箭头
+          label: {
+            show: false,
+            position: "start",
+            formatter: "{b}",
+          },
+          data: [
+            {
+              name: "阈值",
+              yAxis: 120,
+            },
+          ],
+          lineStyle: {
+            color: "#f00",
+          },
+        },
       },
       {
         name: "时间轴2",
@@ -124,6 +145,7 @@ const opts = {
         title: "折线",
       },
       {
+        disabled: true,
         position: "right",
         min: 0,
         max: 200,
@@ -132,6 +154,7 @@ const opts = {
       },
       {
         position: "right",
+        disabled: true,
         min: 0,
         max: 200,
         title: "点",
@@ -148,6 +171,63 @@ const opts = {
   },
 };
 let testData = ref();
+const ops = {
+  color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666"],
+  padding: [15, 10, 0, 15],
+  legend: {},
+  xAxis: {
+    disableGrid: true,
+    boundaryGap: "justify",
+  },
+  yAxis: {
+    gridType: "dash",
+    dashLength: 2,
+  },
+  extra: {
+    area: {
+      type: "curve",
+      opacity: 0.2,
+      addLine: true,
+      width: 2,
+      gradient: true,
+    },
+    scatter: {
+      data: [
+        [20000, 45],
+        [40000, 35],
+        [60000, 45],
+        [80000, 35],
+      ], // 散点数据为空，稍后会动态添加
+      symbolSize: 6, // 散点的大小
+      itemStyle: {
+        color: "red", // 散点的颜色
+      },
+    },
+  },
+};
+
+const testData1 = [
+  {
+    name: "面积图1",
+    data: [
+      [10000, 55],
+      [30000, 25],
+      [50000, 55],
+      [70000, 25],
+      [90000, 55],
+    ],
+  },
+  {
+    name: "面积图2",
+    data: [
+      [10000, 40],
+      [30000, 30],
+      [50000, 40],
+      [70000, 30],
+      [90000, 40],
+    ],
+  },
+];
 
 const getServerData = () => {
   setTimeout(() => {
@@ -159,7 +239,13 @@ const getServerData = () => {
           name: "曲面",
           type: "area",
           style: "curve",
-          data: [70, 50, 85, 130, 64, 88],
+          data: [90, 90, 90, 90, 90, 90],
+        },
+        {
+          name: "曲面",
+          type: "area",
+          style: "curve",
+          data: [140, 140, 140, 140, 140, 140],
         },
         {
           name: "曲线",
@@ -167,7 +253,7 @@ const getServerData = () => {
           style: "curve",
           color: "#1890ff",
           disableLegend: true,
-          data: [70, 50, 85, 130, 64, 88],
+          data: [90, 90, 90, 90, 90, 90],
         },
         {
           name: "点",

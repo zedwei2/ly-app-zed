@@ -35,6 +35,7 @@ const chartData = ref({
     ],
     padding: [],
     enableScroll: false,
+    dataLabel: false,
     dataPointShape: false, //不展示数据点
     legend: {
       show: false, //是否展示图例

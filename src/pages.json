@@ -59,21 +59,21 @@
 			},
 			{
 				"name": "hr-detail",
-				"path": "kpi-detail/patient-heart-detail",
+				"path": "patient-detail/kpi-detail/patient-heart-detail",
 				"style": {
 				  "navigationBarTitleText": "心率详情"
 				}
 			},
 			{
 				"name": "spo-detail",
-				"path": "kpi-detail/oxygen-blood-detail",
+				"path": "patient-detail/kpi-detail/oxygen-blood-detail",
 				"style": {
 				  "navigationBarTitleText": "血氧饱和度"
 				}
 			},
 			{
 				"name": "bp-detail",
-				"path": "kpi-detail/blood-pressure-detail",
+				"path": "patient-detail/kpi-detail/blood-pressure-detail",
 				"style": {
 				  "navigationBarTitleText": "血压"
 				}
