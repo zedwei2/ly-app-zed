@@ -98,10 +98,6 @@ const chart = {
     },
     xAxis: {
       disabled: true,
-      gridColor: "#CCCCCC",
-      gridType: "solid",
-      scrollColor: "#A6A6A6",
-      scrollBackgroundColor: "#EFEBEF",
     },
     yAxis: {
       gridType: "dash",
@@ -114,12 +110,12 @@ const chart = {
         },
       ],
     },
-    extra: {
-      tooltip: {
-        showBox: false,
-        splitLine: true,
-        gridColor: "#FDDEDE",
-      },
+  },
+  extra: {
+    tooltip: {
+      showBox: false,
+      splitLine: true,
+      gridColor: "#FDDEDE",
     },
   },
 };
