@@ -63,6 +63,13 @@
 				"style": {
 				  "navigationBarTitleText": "心率详情"
 				}
+			},
+			{
+				"name": "spo-detail",
+				"path": "kpi-detail/oxygen-blood-detail",
+				"style": {
+				  "navigationBarTitleText": "血氧饱和度"
+				}
 			}
 		  ]
 		}

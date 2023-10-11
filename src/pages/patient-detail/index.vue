@@ -110,7 +110,7 @@ const realTimeData = [
     text: "血氧",
     time: "16:15",
     value: "98",
-    key: "bo",
+    key: "spo",
   },
   {
     icon: bloodSugar,
