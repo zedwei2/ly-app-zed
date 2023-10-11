@@ -52,6 +52,7 @@
     "@dcloudio/uni-mp-toutiao": "3.0.0-3081220230817001",
     "@dcloudio/uni-mp-weixin": "3.0.0-3081220230817001",
     "@dcloudio/uni-quickapp-webview": "3.0.0-3081220230817001",
+    "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
     "less": "^4.2.0",
     "pinia": "^2.0.33",
