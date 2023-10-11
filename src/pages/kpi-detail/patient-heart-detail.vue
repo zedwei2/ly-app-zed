@@ -1,7 +1,7 @@
 <template>
   <view class="hr-detail">
     <dateBar />
-    <areaChart />
+    <weeekAreaChart />
     <view class="hr-card">
       <view  
         class="hr-card-item"
@@ -16,7 +16,8 @@
 
 <script lang="ts" setup>
 import dateBar from "./component/date-bar.vue";
-import areaChart from "./component/area-chart.vue";
+// import dayAreaChart from "./component/day-area-chart.vue";
+import weeekAreaChart from "./component/week-area-chart.vue";
 const hrCardData = [
   {
     title: '心率范围',
@@ -35,7 +36,6 @@ const hrCardData = [
     value: '--'
   },
 ]
-
 
 </script>
 
