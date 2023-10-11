@@ -1,13 +1,13 @@
 <template>
   <view class="spo-detail">
     <dateBar />
-    <tareaChart />
+    <bpChart />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { ref } from "vue";
-import tareaChart from "@/components/u-charts/tarea/index.vue";
+import bpChart from "./component/bp-chart.vue";
 import dateBar from "./component/date-bar.vue";
 </script>
 

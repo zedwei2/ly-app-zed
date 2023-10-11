@@ -16,16 +16,16 @@
         <text class="title">患者分布</text>
         <view class="pie-chart">
           <view>
-            <pieChart :pieData="hbpData" />
+            <patientDistribution :pieData="hbpData" />
           </view>
           <view>
-            <pieChart :pieData="lbpData" />
+            <patientDistribution :pieData="lbpData" />
           </view>
           <view>
-            <pieChart :pieData="hhrData" />
+            <patientDistribution :pieData="hhrData" />
           </view>
           <view>
-            <pieChart :pieData="lhrData" />
+            <patientDistribution :pieData="lhrData" />
           </view>
         </view>
       </view>
@@ -34,11 +34,11 @@
           <text class="title">患者趋势</text>
         </view>
         <view class="trend chart">
-          <areaChart :areaData="trendData" />
+          <patientTrend :areaData="trendData" />
         </view>
         <text class="title">因素分析</text>
         <view class="reason-analysis chart">
-          <funnelChart :reasonData="reasonData" />
+          <reasonAnalysis :reasonData="reasonData" />
         </view>
       </view>
     </view>
@@ -46,9 +46,9 @@
 </template>
 <script lang="ts" setup>
 import { reactive, ref } from "vue";
-import pieChart from "@/components/u-charts/pie/index.vue";
-import funnelChart from "@/components/u-charts/funnel/index.vue";
-import areaChart from "@/components/u-charts/area/index.vue";
+import patientDistribution from "./components/patient-distribution.vue";
+import patientTrend from "./components/patient-trend.vue";
+import reasonAnalysis from "./components/reason-analysis.vue";
 
 const staticInfo = {
   totalNo: 12,
