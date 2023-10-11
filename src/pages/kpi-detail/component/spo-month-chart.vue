@@ -1,11 +1,10 @@
 <template>
    <view class="hr-chart">
-      <view class="hr-chart-title"><text>65</text>次/分钟</view>
+      <view class="hr-chart-title"><text>89%-100%</text></view>
         <qiun-data-charts 
           type="candle"
           :opts="chart.opts"
           :chartData="chart.chartData"
-        
         />
       <view
         class="custom-xaxis"
@@ -21,38 +20,58 @@
 <script lang="ts" setup>
 const xAxisData = [
   {
-    name: '09/22 周一',
+    name: '1',
     isActive: false
   },
   {
-    name: '09/23 周二',
+    name: '2',
     isActive: false
   },
   {
-    name: '09/24 周三',
+    name: '3',
     isActive: false
   },
   {
-    name: '09/25 周四',
+    name: '4',
+    isActive: false
+  },
+  {
+    name: '5',
+    isActive: false
+  },
+  {
+    name: '6',
+    isActive: false
+  },
+  {
+    name: '7',
+    isActive: false
+  },
+  {
+    name: '8',
+    isActive: false
+  },
+  {
+    name: '9',
     isActive: true
   },
   {
-    name: '09/26 周五',
+    name: '10',
     isActive: false
   },
   {
-    name: '09/27 周六',
+    name: '11',
     isActive: false
   },
   {
-    name: '09/28 周天',
+    name: '12',
     isActive: false
-  }
+  },
 ]
 
 const chart = {
   chartData: {
-    categories: ['09/22 周一', '09/23 周二', '09/24 周三', '09/25 周四', '09/26 周五', '09/27 周六', '09/28 周天'],   
+    categories: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],   
     series: [
       {
         name: 'dada',
@@ -60,7 +79,11 @@ const chart = {
           [0,0,0,0],
           [0,0,0,0],
           [0,0,0,0],
-          [60,103,60,60], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+          [0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0],
+          [0,0,0,0],
+          [80,90,80,80], // 第一个下限 第二个上限 第三个上影线 第四个下影线
           [0,0,0,0],
           [0,0,0,0],
           [0,0,0,0],
@@ -70,9 +93,7 @@ const chart = {
     ]
   },
   opts: {
-        rotate: false,
-        rotateLock: false,
-        color: ["#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71","#FF6C71"],
+        color: ["#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1","#45DDE1"],
         padding: [15,4,10,4],
         dataLabel: false,
         enableScroll: false,
@@ -81,19 +102,16 @@ const chart = {
         },
         xAxis: {
           disabled: true,
-          gridColor: "#CCCCCC",
-          gridType: "solid",
-          scrollColor: "#A6A6A6",
-          scrollBackgroundColor: "#EFEBEF"
         },
         yAxis: {
           gridType: "dash",
           data: [
             {
               axisLine: false,
+              format: "yAxisDemo1",
               fontColor: '#92969A',
-              min: 40,
-              max: 140
+              min: 0,
+              max: 100
             }
           ]
         },
@@ -134,14 +152,19 @@ const chart = {
       margin-left: 60rpx;
       text-align: center;
       justify-content: space-around;
+      align-items: center;
       color:#92969A;
       font-size: 24rpx;
       font-weight: 500;
-      line-height: 40rpx; /* 166.667% */
-      text.active {
-        color: #fff;
-        border-radius: 8rpx;
-        background: linear-gradient(180deg, #FF5D63 0%, #DE4A4A 100%);
+      text {
+        width: 32rpx;
+        height: 32rpx;
+        line-height: 32rpx; /* 166.667% */
+        &.active {
+          color: #fff;
+          border-radius: 8rpx;
+          background: linear-gradient(180deg, #FF5D63 0%, #DE4A4A 100%);
+        }
       }
     }
   }
