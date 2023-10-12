@@ -28,6 +28,7 @@ uni-page-body,
 html,
 body {
   height: 100%;
+  overflow-y: hidden;
 }
 //tab样式
 .uni-tabbar {

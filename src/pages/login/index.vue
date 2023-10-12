@@ -143,6 +143,7 @@ const serviceClick = () => {
       button {
         margin-top: 48rpx;
         background: linear-gradient(91deg, #45dde1 2.47%, #09ccd5 99.67%);
+        padding: 26rpx 0;
       }
     }
 

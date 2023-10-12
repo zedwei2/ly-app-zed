@@ -1,8 +1,10 @@
 <template>
   <view class="spo-detail">
     <dateBar @changeDate="onDataChange" />
-    <bpChart :type="timeType" v-if="isChartShow" />
-    <tipLegend :tipData="legendData" />
+    <view class="chart">
+      <bpChart :type="timeType" v-if="isChartShow" />
+      <tipLegend :tipData="legendData" />
+    </view>
     <view class="info">
       <view class="aver-info">
         <view>
@@ -53,6 +55,11 @@ const onDataChange = (type: string) => {
 <style scoped lang="less">
 .spo-detail {
   padding: 16px 18px;
+  .chart {
+    border: solid 2rpx #e9eef0;
+    border-radius: 8rpx;
+    margin-bottom: 32rpx;
+  }
   .info {
     display: flex;
     flex-direction: column;

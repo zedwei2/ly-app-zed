@@ -4,15 +4,13 @@
     :class="warningNo === 0 ? 'common-success-bg' : 'common-warning-bg'"
   >
     <view class="top-info">
-      <view class="search-input">
-        <image src="@/static/patient-list/search.png" mode="scaleToFill" />
-        <input
-          confirm-type="search"
-          placeholder="搜索患者名字"
-          @confirm="onSearch"
-          placeholder-style="color: #fff"
-        />
-      </view>
+      <van-search
+        v-model="searchName"
+        placeholder="搜索患者名字"
+        @change="onSearch(searchName)"
+        @search="onSearch(searchName)"
+        background="rgba(236, 238, 244, 0.2)"
+      />
       <view class="warning-info">
         <text class="number">{{ warningNo }}</text>
         <text>当前预警人数</text>
@@ -122,7 +120,7 @@ const isActive = ref(0),
   ];
 
 /**患者列表 */
-const paientList = reactive([
+const paientList = ref([
   {
     name: "张三",
     img: "",
@@ -215,8 +213,13 @@ const detailList = reactive([
   },
 ]);
 
+const searchName = ref("");
+
 /**名称搜索 */
-const onSearch = () => {};
+const onSearch = (name: string) => {
+  console.log(name, 2222);
+  paientList.value = [];
+};
 
 /**切换tab */
 const changeTab = (index: number) => {
@@ -250,6 +253,7 @@ const callPhone = (mobile: string) => {
   display: flex;
   flex-direction: column;
   height: 100%;
+  overflow-y: auto;
   .top-info {
     display: flex;
     flex-direction: column;
@@ -258,17 +262,19 @@ const callPhone = (mobile: string) => {
     padding: 24rpx 32rpx 48rpx;
     color: #fff;
     margin-top: 64rpx;
-    .search-input {
-      background: rgba(236, 238, 244, 0.2);
-      padding: 16rpx 0px;
+    > .van-search {
+      padding: 0;
       width: 100%;
-      font-size: 14px;
-      display: flex;
-      align-items: center;
-      > image {
-        height: 28rpx;
-        width: 28rpx;
-        margin: 0 3px 0 12px;
+      border-radius: 6px;
+      background: rgba(236, 238, 244, 0.2);
+      :deep(.van-search__content) {
+        background: rgba(236, 238, 244, 0.2);
+      }
+      :deep(.van-field__left-icon) {
+        color: #fff;
+      }
+      :deep(.van-field__control::-webkit-input-placeholder) {
+        color: #fff;
       }
     }
 
