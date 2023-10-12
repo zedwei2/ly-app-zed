@@ -3,6 +3,7 @@
     class="patient-detail-wrapper"
     :class="isWarining ? 'common-warning-bg' : 'common-success-bg'"
   >
+    <navBar :title="'患者详情'" :isShowBack="true" />
     <view class="patient-detail-title">{{
       `${isWarining ? "异常预警" : "健康"}`
     }}</view>
@@ -61,6 +62,7 @@
 
 <script setup lang="ts">
 import { ref } from "vue";
+import navBar from "@/components/nav-bar/index.vue";
 import FocusCall from "@/components/focus-call/index.vue";
 import treasure from "@/static/patient-detail/treasure.png";
 import reserve from "@/static/patient-detail/reserve.png";

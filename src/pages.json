@@ -42,7 +42,8 @@
 				"name": "patient-detail",
 				"path": "patient-detail/index",
 				"style": {
-				  "navigationBarTitleText": "患者详情"
+				  "navigationBarTitleText": "患者详情",
+				  "navigationStyle": "custom"    
 				}
 			},
 			{
@@ -87,7 +88,7 @@
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"backgroundColor": "#fff"
 
 	},
 	"tabBar":{
