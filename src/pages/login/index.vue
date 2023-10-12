@@ -66,17 +66,11 @@ const login = () => {
 // 打开用户协议页面
 const service = () => {
   forward("user-agreement");
-  // uni.navigateTo({
-  //   url: "/pages/login/components/user-agreement",
-  // });
 };
 
 // 打开隐私政策页面
 const serviceClick = () => {
   forward("privacy-policy");
-  // uni.navigateTo({
-  //   url: "/pages/login/components/privacy-policy",
-  // });
 };
 </script>
 
