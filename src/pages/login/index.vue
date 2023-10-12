@@ -86,8 +86,8 @@ const serviceClick = () => {
   .left-icon {
     position: fixed;
     left: 0;
-    width: 175px;
-    height: 77px;
+    width: 350rpx;
+    height: 154rpx;
   }
 
   .top-title {
@@ -102,66 +102,66 @@ const serviceClick = () => {
 
       > text {
         position: absolute;
-        left: 23px;
-        bottom: 30px;
+        left: 46rpx;
+        bottom: 60rpx;
         color: #fff;
-        font-size: 26px;
+        font-size: 52rpx;
       }
     }
 
     > image {
-      padding-top: 48px;
-      width: 141px;
-      height: 112px;
+      padding-top: 96rpx;
+      width: 282rpx;
+      height: 224rpx;
     }
   }
 
   .content {
     flex: 1;
     background: #fff;
-    border-radius: 24px 24px 0 0;
+    border-radius: 48rpx 48rpx 0 0;
     display: flex;
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: center;
 
-    font-size: 16px;
+    font-size: 32rpx;
 
     > form {
       width: 100%;
-      padding: 32px;
+      padding: 64rpx;
 
       .title {
-        font-size: 17px;
+        font-size: 34rpx;
         font-weight: 700;
-        padding-bottom: 12px;
+        padding-bottom: 24rpx;
       }
 
       .uni-form-item {
-        border-bottom: solid 1px #eef0f1;
-        padding: 12px 0;
-        font-size: 16px;
+        border-bottom: solid 2rpx #eef0f1;
+        padding: 24rpx 0;
+        font-size: 32rpx;
         font-weight: 300;
       }
 
       button {
-        margin-top: 24px;
+        margin-top: 48rpx;
         background: linear-gradient(91deg, #45dde1 2.47%, #09ccd5 99.67%);
       }
     }
 
     .usr-agreement {
-      font-size: 14px;
-      padding: 12px 37px;
+      font-size: 24rpx;
+      padding: 24rpx 74rpx;
       display: flex;
       align-items: center;
       color: #92969a;
-      font-size: 14px;
+      font-size: 28rpx;
 
       .checked {
-        height: 16px;
-        width: 16px;
-        padding-right: 3px;
+        height: 32rpx;
+        width: 32rpx;
+        padding-right: 6rpx;
       }
 
       text {

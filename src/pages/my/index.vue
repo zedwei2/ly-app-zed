@@ -62,30 +62,30 @@ const logout = () => {
   .top-info {
     display: flex;
     align-items: center;
-    padding: 50px 24px 16px;
+    padding: 100rpx 48rpx 32rpx;
     color: #fff;
     > image {
-      border: 2px solid #fff;
-      border-radius: 64px;
-      width: 64px;
-      height: 64px;
+      border: 4rpx solid #fff;
+      border-radius: 128rpx;
+      width: 128rpx;
+      height: 128rpx;
     }
     > view {
       display: flex;
       flex-direction: column;
-      padding-left: 12px;
+      padding-left: 24rpx;
       font-weight: 500;
       .name {
-        font-size: 22px;
+        font-size: 44rpx;
       }
       .identity {
-        font-size: 14px;
+        font-size: 28rpx;
       }
     }
   }
   .content {
     flex: 1;
-    padding: 0 18px;
+    padding: 0 36rpx;
     > view {
       display: flex;
       justify-content: space-between;
@@ -93,46 +93,46 @@ const logout = () => {
     .item {
       display: flex;
       align-items: center;
-      padding: 23px 0;
-      border-bottom: solid 1px #f2f2f2;
+      padding: 46rpx 0;
+      border-bottom: solid 2rpx #f2f2f2;
       .left {
         display: flex;
         align-items: center;
         image {
-          width: 20px;
-          height: 20px;
+          width: 40rpx;
+          height: 40rpx;
         }
         > text {
-          padding-left: 19px;
+          padding-left: 38rpx;
         }
       }
       .right {
         font-weight: 400;
-        font-size: 15px;
+        font-size: 30rpx;
         color: #92969a;
         > image {
-          margin-left: 10px;
-          width: 6px;
-          height: 11px;
+          margin-left: 20rpx;
+          width: 12rpx;
+          height: 22rpx;
         }
       }
     }
     .more {
       justify-content: space-around;
-      margin-top: 12px;
+      margin-top: 24rpx;
 
       .van-button:not(:last-child) {
-        margin-right: 18px;
+        margin-right: 36rpx;
       }
       > .van-button {
-        padding-top: 10px;
-        padding-bottom: 10px;
-        border: 1px solid #92969a;
-        border-radius: 10px;
+        padding-top: 20rpx;
+        padding-bottom: 20rpx;
+        border: 2rpx solid #92969a;
+        border-radius: 20rpx;
         width: 100%;
         text-align: center;
         font-weight: 400;
-        font-size: 15px;
+        font-size: 30rpx;
         color: #92969a;
       }
     }

@@ -33,6 +33,8 @@
 import { ref, computed } from "vue";
 import dayjs from "dayjs";
 
+const emit = defineEmits(["changeDate"]);
+
 const weekList = {
     1: "星期一",
     2: "星期二",
@@ -56,6 +58,7 @@ const dateList = [
 const changeDate = (index: number) => {
   isActive.value = index;
   handleDate(currentTime.value, currentType.value);
+  emit("changeDate", currentType.value);
 };
 
 /**处理时间展示 */

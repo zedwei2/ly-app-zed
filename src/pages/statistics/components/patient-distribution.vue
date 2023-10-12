@@ -91,19 +91,19 @@ const chartData = ref({
     display: flex;
     flex-direction: column;
     color: #92969a;
-    font-size: 12px;
+    font-size: 24rpx;
     font-weight: 400;
-    line-height: 18px;
+    line-height: 36rpx;
     .circle {
       display: inline-block;
-      width: 4px;
-      height: 4px;
+      width: 8rpx;
+      height: 8rpx;
       background: #ffffff;
       border-radius: 50%;
     }
   }
   .chart {
-    height: 94px;
+    height: 188rpx;
     overflow: hidden;
   }
 }

@@ -6,6 +6,8 @@
       :chart-data="chartData.data"
     />
     <qiun-data-charts type="mix" :opts="opts" :chartData="testData" />
+
+    <qiun-data-charts type="scatter" :opts="optss" :chartData="chartDatas" />
   </view>
 </template>
 
@@ -22,6 +24,7 @@ const props = defineProps({
 
 const { areaData } = toRefs(props);
 
+//面积图
 const chartData = ref({
   opts: {
     color: [
@@ -79,23 +82,6 @@ const chartData = ref({
           [70000, 140],
           [90000, 140],
         ],
-        markLine: {
-          symbol: ["none", "none"], // 去掉箭头
-          label: {
-            show: false,
-            position: "start",
-            formatter: "{b}",
-          },
-          data: [
-            {
-              name: "阈值",
-              yAxis: 120,
-            },
-          ],
-          lineStyle: {
-            color: "#f00",
-          },
-        },
       },
       {
         name: "时间轴2",
@@ -139,15 +125,18 @@ const opts = {
     gridColor: "#CCCCCC",
     padding: 10,
     showTitle: true,
+
     data: [
       {
         position: "left",
         title: "折线",
+        min: 40,
+        max: 200,
       },
       {
         disabled: true,
         position: "right",
-        min: 0,
+        min: 40,
         max: 200,
         title: "柱状图",
         textAlign: "left",
@@ -155,10 +144,28 @@ const opts = {
       {
         position: "right",
         disabled: true,
-        min: 0,
+        min: 40,
         max: 200,
         title: "点",
         textAlign: "left",
+        //与之，不生效
+        markLine: {
+          // symbol: ["none", "none"], // 去掉箭头
+          // label: {
+          //   show: false,
+          //   position: "start",
+          //   formatter: "{b}",
+          // },
+          // data: [
+          //   {
+          //     name: "阈值",
+          //     yAxis: 100,
+          //   },
+          // ],
+          // lineStyle: {
+          //   color: "#000",
+          // },
+        },
       },
     ],
   },
@@ -170,6 +177,8 @@ const opts = {
     },
   },
 };
+
+/**混合图 */
 let testData = ref();
 const ops = {
   color: ["#1890FF", "#91CB74", "#FAC858", "#EE6666"],
@@ -182,6 +191,7 @@ const ops = {
   yAxis: {
     gridType: "dash",
     dashLength: 2,
+    data: {},
   },
   extra: {
     area: {
@@ -243,7 +253,7 @@ const getServerData = () => {
         },
         {
           name: "曲面",
-          type: "area",
+          type: "line",
           style: "curve",
           data: [140, 140, 140, 140, 140, 140],
         },
@@ -266,6 +276,75 @@ const getServerData = () => {
     };
     testData.value = JSON.parse(JSON.stringify(res));
   }, 500);
+};
+
+/**散点图 */
+const optss = {
+  color: [
+    "#1890FF",
+    "#91CB74",
+    "#FAC858",
+    "#EE6666",
+    "#73C0DE",
+    "#3CA272",
+    "#FC8452",
+    "#9A60B4",
+    "#ea7ccc",
+  ],
+  padding: [15, 15, 0, 15],
+  dataLabel: false,
+  enableScroll: false,
+  legend: {},
+  xAxis: {
+    disableGrid: false,
+    gridType: "dash",
+    splitNumber: 5,
+    boundaryGap: "justify",
+    min: 0,
+  },
+  yAxis: {
+    disableGrid: false,
+    gridType: "dash",
+    min: 40,
+    max: 200,
+  },
+  extra: {
+    scatter: {},
+  },
+};
+const chartDatas = {
+  series: [
+    {
+      name: "散点一",
+      data: [
+        [0, 140],
+        [10, 120],
+        [20, 130],
+        [30, 90],
+        [40, 110],
+        [50, 130],
+        [60, 90],
+        [70, 100],
+        [80, 120],
+        [90, 130],
+      ],
+    },
+    {
+      name: "散点二",
+      data: [
+        [0, 60],
+        [10, 70],
+        [20, 80],
+        [30, 60],
+        [40, 70],
+        [50, 80],
+        [60, 90],
+        [70, 60],
+        [80, 70],
+        [90, 80],
+      ],
+    },
+  ],
 };
 
 onShow(() => {

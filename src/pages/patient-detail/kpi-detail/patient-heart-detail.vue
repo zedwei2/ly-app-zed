@@ -1,15 +1,19 @@
 <template>
   <view class="hr-detail">
-    <dateBar />
-    <weeekAreaChart />
-    <infoCard :infoData="hrCardData" :isUnit="true"/>
+    <dateBar @changeDate="onDataChange" />
+    <dayAreaChart v-if="activeType === 'day'" />
+    <weeekAreaChart v-else />
+    <infoCard :infoData="hrCardData" :isUnit="true" />
   </view>
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
 import dateBar from "./component/date-bar.vue";
+import dayAreaChart from "./component/hr-day-chart.vue";
 import weeekAreaChart from "./component/hr-week-chart.vue";
 import infoCard from "./component/info-card.vue";
+
 const hrCardData = [
   {
     title: "心率范围",
@@ -28,11 +32,15 @@ const hrCardData = [
     value: "--",
   },
 ];
+const activeType = ref("day"),
+  currentDate = ref();
+const onDataChange = (type: string) => {
+  activeType.value = type;
+};
 </script>
 
 <style scoped lang="less">
 .hr-detail {
   padding: 16px 18px;
-  
 }
 </style>

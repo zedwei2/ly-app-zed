@@ -1,7 +1,7 @@
 <template>
   <view class="common-success-bg">
     <custom-navbar title="统计"></custom-navbar>
-    <view class="statictis" :style="'height: calc(100vh - ' + 80 + 'px);'">
+    <view class="statictis" :style="'height: calc(100vh - ' + 160 + 'rpx);'">
       <view class="basic-info">
         <view>
           <text class="title title1">全部患者/人</text>
@@ -115,68 +115,68 @@ const reasonData = reactive([
     display: flex;
     justify-content: space-around;
     > view:not(:last-child) {
-      margin-right: 10px;
+      margin-right: 20rpx;
     }
     > view {
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      padding: 12px 14px;
+      padding: 24rpx 28rpx;
       background: #fff;
-      border-radius: 4px;
+      border-radius: 8rpx;
       width: 100%;
 
       .title {
         color: #4c5056;
-        font-size: 12px;
+        font-size: 24rpx;
         font-weight: 500;
       }
       .title1 {
         &::before {
           content: "";
-          width: 4px;
-          height: 10px;
+          width: 8rpx;
+          height: 20rpx;
           display: inline-block;
           position: relative;
-          top: 0px;
+          top: 0;
           background: #007bff;
-          margin-right: 6px;
-          border-radius: 2px;
+          margin-right: 12rpx;
+          border-radius: 4rpx;
         }
       }
       .title2 {
         &::before {
           content: "";
-          width: 4px;
-          height: 10px;
+          width: 8rpx;
+          height: 20rpx;
           display: inline-block;
           position: relative;
           top: 0px;
           background: #ff4141;
-          margin-right: 6px;
-          border-radius: 2px;
+          margin-right: 12rpx;
+          border-radius: 4rpx;
         }
       }
       .number {
         color: rgba(0, 29, 69, 0.9);
-        font-size: 22px;
+        font-size: 44rpx;
         font-weight: 700;
-        line-height: 22px;
-        padding-top: 9px;
-        padding-left: 9px;
+        line-height: 44rpx;
+        padding-top: 18rpx;
+        padding-left: 18rpx;
       }
     }
   }
   .chart-content {
     background: #fff;
-    border-radius: 4px;
-    padding: 12px;
-    margin-top: 10px;
+    border-radius: 8rpx;
+    padding: 24rpx;
+    margin-top: 20rpx;
     .title {
       color: #242429;
-      font-size: 16px;
+      font-size: 32rpx;
       font-weight: 500;
-      line-height: 26px; /* 162.5% */
+      line-height: 52rpx; /* 162.5% */
     }
     .pie-chart {
       display: flex;
@@ -184,19 +184,19 @@ const reasonData = reactive([
       justify-content: space-between; /* 水平方向均匀分布 */
       > view {
         flex-basis: calc(50% - 10px); /* 子元素宽度占50%（减去间距） */
-        margin-bottom: 20px; /* 垂直方向的间距 */
+        margin-bottom: 40rpx; /* 垂直方向的间距 */
         box-sizing: border-box; /* 防止元素超出容器 */
         width: 50%;
       }
     }
     .trend {
-      height: 144px;
+      height: 288rpx;
     }
     .reason-analysis {
       width: 100%;
     }
     > view {
-      margin-bottom: 15px;
+      margin-bottom: 30rpx;
     }
   }
 }
