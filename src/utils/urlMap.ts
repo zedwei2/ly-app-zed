@@ -26,7 +26,7 @@ export const h5HsqMap = ["member-center"];
 export const pagesMap = [...tabBarPagesMap, ...subPagesMap];
 
 // 不需要登录权限的页面
-export const whiteList = [""];
+export const whiteList = ["user-agreement", "privacy-policy"];
 
 const types = {
   h5Hsq: /(m(\.dev|\.beta)?\.haoshiqi\.net\/v2)/i,

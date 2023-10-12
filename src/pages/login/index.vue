@@ -65,16 +65,18 @@ const login = () => {
 
 // 打开用户协议页面
 const service = () => {
-  uni.navigateTo({
-    url: "/pages/login/components/user-agreement",
-  });
+  forward("user-agreement");
+  // uni.navigateTo({
+  //   url: "/pages/login/components/user-agreement",
+  // });
 };
 
 // 打开隐私政策页面
 const serviceClick = () => {
-  uni.navigateTo({
-    url: "/pages/login/components/privacy-policy",
-  });
+  forward("privacy-policy");
+  // uni.navigateTo({
+  //   url: "/pages/login/components/privacy-policy",
+  // });
 };
 </script>
 

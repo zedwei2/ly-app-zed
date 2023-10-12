@@ -31,18 +31,6 @@
 				"navigationBarTitleText": "我的",
 				"titleNView": false
 			}
-		},
-		{
-			"path":"pages/login/components/user-agreement",
-			"style":{
-				"navigationBarTitleText": "用户协议"
-			}
-		},
-		{
-			"path":"pages/login/components/privacy-policy",
-			"style":{
-				"navigationBarTitleText": "隐私政策"
-			}
 		}
 	],
 
@@ -76,6 +64,20 @@
 				"path": "patient-detail/kpi-detail/blood-pressure-detail",
 				"style": {
 				  "navigationBarTitleText": "血压"
+				}
+			},
+			{
+				"name":"user-agreement",
+				"path":"login/components/user-agreement",
+				"style":{
+					"navigationBarTitleText": "用户协议"
+				}
+			},
+			{
+				"name":"privacy-policy",
+				"path":"login/components/privacy-policy",
+				"style":{
+					"navigationBarTitleText": "隐私政策"
 				}
 			}
 		  ]
