@@ -4,7 +4,7 @@
     :class="warningNo === 0 ? 'common-success-bg' : 'common-warning-bg'"
   >
     <view class="top-info">
-      <Search
+      <van-search
         v-model="searchName"
         placeholder="搜索患者名字"
         @search="onSearch"
@@ -95,7 +95,6 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import { Search } from 'vant';
 import { forward } from "@/utils/router";
 
 /**当前预警人数*/
