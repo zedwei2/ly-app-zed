@@ -1,22 +1,13 @@
 <template>
    <view class="hr-chart">
       <view class="hr-chart-title"><text>65</text>次/分钟</view>
-      <qiun-data-charts 
-        type="area"
-        :opts="chart.opts"
-        :chartData="chart.chartData"
-      />
-      <view
-        class="custom-xaxis"
-        >
-        <text 
-          v-for="item in xAxisData"
-          :key="item">{{ item }}</text>
-      </view>
+      <baseChart :chart="chart" :xAxisData="xAxisData" :xAxisHasActive="false"/>
     </view>
 </template>
 
 <script lang="ts" setup>
+import baseChart from  './base-chart.vue'
+
 const getData = () => {
   var arr: any = []
   var q = 1696953600000
@@ -27,6 +18,7 @@ const getData = () => {
   return arr
 }
 const chart = {
+  type: 'area',
   chartData: {
     series: [
       {

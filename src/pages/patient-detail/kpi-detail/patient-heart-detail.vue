@@ -1,8 +1,9 @@
 <template>
   <view class="hr-detail">
     <dateBar @changeDate="onDataChange" />
-    <dayAreaChart v-if="activeType === 'day'" />
-    <weeekAreaChart v-else />
+    <hrDayChart v-if="activeType === 'day'" />
+    <hrWeekChart v-else-if="activeType === 'week'"/>
+    <hrMonthChart v-else />
     <infoCard :infoData="hrCardData" :isUnit="true" />
   </view>
 </template>
@@ -10,8 +11,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import dateBar from "./component/date-bar.vue";
-import dayAreaChart from "./component/hr-day-chart.vue";
-import weeekAreaChart from "./component/hr-week-chart.vue";
+import hrDayChart from "./component/hr-day-chart.vue";
+import hrWeekChart from "./component/hr-week-chart.vue";
+import hrMonthChart from "./component/hr-month-chart.vue";
 import infoCard from "./component/info-card.vue";
 
 const hrCardData = [
