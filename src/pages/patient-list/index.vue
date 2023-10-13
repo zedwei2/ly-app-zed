@@ -4,12 +4,12 @@
     :class="warningNo === 0 ? 'common-success-bg' : 'common-warning-bg'"
   >
     <view class="top-info">
-      <van-search
+      <Search
         v-model="searchName"
         placeholder="搜索患者名字"
-        @change="onSearch(searchName)"
-        @search="onSearch(searchName)"
+        @search="onSearch"
         background="rgba(236, 238, 244, 0.2)"
+	  
       />
       <view class="warning-info">
         <text class="number">{{ warningNo }}</text>
@@ -96,6 +96,7 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
+import { Search } from 'vant';
 import { forward } from "@/utils/router";
 
 /**当前预警人数*/
@@ -216,8 +217,8 @@ const detailList = reactive([
 const searchName = ref("");
 
 /**名称搜索 */
-const onSearch = (name: string) => {
-  console.log(name, 2222);
+const onSearch = (val: string) => {
+  console.log(val, 2222);
   paientList.value = [];
 };
 
