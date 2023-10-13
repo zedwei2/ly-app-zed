@@ -40,6 +40,11 @@ const props = defineProps({
   }
 });
 
+const complete = (q: any) => {
+  console.log(222, q)
+}
+
+
 let { xAxisData } = toRefs(props);
 
 /**
@@ -58,7 +63,8 @@ const xAxisDataUpdate = (currentIndex: number) => {
  * @param key 
  */
 const onItemClick = (key: number) => {
-  xAxisDataUpdate(key)
+  // 暂时关闭 未找到点击x轴 选中对应数据的方法
+  // xAxisDataUpdate(key) 
 }
 
 /**
