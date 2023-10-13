@@ -125,7 +125,7 @@ const optsTest = {
     disableGrid: true,
   },
   yAxis: {
-    // disabled: true,
+    disabled: true,
     data: [
       {
         min: 0,
