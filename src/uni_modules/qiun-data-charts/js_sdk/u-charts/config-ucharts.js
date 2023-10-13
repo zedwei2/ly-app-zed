@@ -67,6 +67,13 @@ const cfu = {
       	return '其他我没改'+item.data+'天'
       }
     },
+    "tooltipDemo2":function(item, category, index, opts){
+      if(index==0){
+      	return '随便用'+item.data+'年'
+      }else{
+      	return '其他我没改'+item.data+'天'
+      }
+    },
     "pieDemo":function(val, index, series, opts){
       if(index !== undefined){
         return series[index].name+'：'+series[index].data+'元'

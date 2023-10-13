@@ -9,7 +9,6 @@
         placeholder="搜索患者名字"
         @search="onSearch"
         background="rgba(236, 238, 244, 0.2)"
-	  
       />
       <view class="warning-info">
         <text class="number">{{ warningNo }}</text>
@@ -23,7 +22,7 @@
             :class="{ active: isActive === index }"
             @click="changeTab(index)"
           >
-            {{ item.title }}({{ item.number }}人)
+            {{ item.title }}({{ item.number }}人) 
           </view>
         </view>
       </view>
@@ -266,7 +265,7 @@ const callPhone = (mobile: string) => {
     > .van-search {
       padding: 0;
       width: 100%;
-      border-radius: 6px;
+      border-radius: 12rpx;
       background: rgba(236, 238, 244, 0.2);
       :deep(.van-search__content) {
         background: rgba(236, 238, 244, 0.2);
