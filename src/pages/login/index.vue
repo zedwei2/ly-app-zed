@@ -154,6 +154,8 @@ const serviceClick = () => {
       align-items: center;
       color: #92969a;
       font-size: 28rpx;
+      position: absolute;
+      bottom: 24rpx;
 
       .checked {
         height: 32rpx;

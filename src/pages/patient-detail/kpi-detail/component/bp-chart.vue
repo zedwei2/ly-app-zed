@@ -130,7 +130,26 @@ const chartData = ref({
         onShadow: true,
         animation: "horizontal",
       },
+
+      markLine: {
+        type: "dash",
+        dashLength: 5,
+        data: [
+          {
+            value: 140,
+            lineColor: "#f04864",
+            showLabel: true,
+          },
+          {
+            value: 90,
+            lineColor: "#45DDE1",
+            showLabel: true,
+          },
+        ],
+      },
       tooltip: {
+        showBox: false,
+        showCategory: true,
         showArrow: false,
         borderRadius: 2,
       },
