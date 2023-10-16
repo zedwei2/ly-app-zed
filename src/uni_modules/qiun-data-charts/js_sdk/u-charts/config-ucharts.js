@@ -57,16 +57,17 @@ const cfu = {
     "yAxisDemo1":function(val, index, opts){return val+'%'},
 	  "yAxisDemo2": function (val, index, opts) { return val.toFixed(2) },
 	  "yAxisDemo3": function (val, index, opts) {
-		  console.log(opts,'val----', val, index)
-		//   if (index == 0) {
+		//   console.log(opts,'val----', val, index)
+		//   if (val <= 90) {
+		// 	  console.log(1,val)
 		// 	  return val+'%'
-		//   } else if (index == 1) { 
-		// 	  return '80%'
+		//   } else if (val = 280) { 
+		// 	  console.log(2,val)
+		// 	  return '90%'
 		//   } else {
-			  
+		// 	return ''
 		//   }
 		  
-		  return val
 	  },
     "xAxisDemo1":function(val, index, opts){return val+'年';},
     "xAxisDemo2":function(val, index, opts){return formatDateTime(val,'h:m')},

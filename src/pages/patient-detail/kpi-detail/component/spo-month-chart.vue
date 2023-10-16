@@ -108,7 +108,7 @@ const optsTest = {
     // "#DE4A4A",
     "#FE7302",
     "#FE7302", //第二第三的颜色保持一致，造成90以下颜色统一的效果
-    "#45DDE1",
+    "#09CCD5",
     "#73C0DE",
     "#3CA272",
     "#FC8452",
@@ -125,11 +125,20 @@ const optsTest = {
     disableGrid: true,
   },
   yAxis: {
-    disabled: true,
+    gridType: "dash",
     data: [
       {
+        disabled: true,
         min: 0,
+
+        format: "yAxisDemo1",
       },
+      // {
+      //   min: 60,
+      //   max: 100,
+      //   splitNumber: 6,
+      //   format: "yAxisDemo1",
+      // },
     ],
   },
 
@@ -149,6 +158,20 @@ const optsTest = {
       splitLine: false,
       gridColor: "#FDDEDE",
       legendShow: false,
+    },
+    markLine: {
+      type: "dash",
+      dashLength: 5,
+      data: [
+        {
+          value: 250,
+          lineColor: "#45DDE1",
+          showLabel: true,
+          labelText: "90%",
+          labelOffsetX: 25, //标签水平位置偏移距离
+          labelFontSize: 10, //数据标签字体大小
+        },
+      ],
     },
   },
 };
