@@ -1,13 +1,13 @@
 <template>
   <view class="hr-chart">
-    <view class="hr-chart-title"><text>65</text>次/分钟</view>
-    <baseChart :chart="chart" :xAxisData="xAxisData"/>
+    <!-- <view class="hr-chart-title"><text>65</text>次/分钟</view> -->
+    <baseChart :chart="chart" :xAxisData="xAxisData" type="week" />
   </view>
 </template>
 
 <script lang="ts" setup>
 import { reactive } from "vue";
-import baseChart from  './base-chart.vue'
+import baseChart from "./base-chart.vue";
 
 let xAxisData = reactive([
   {
@@ -38,10 +38,10 @@ let xAxisData = reactive([
     name: "09/28 周天",
     isActive: false,
   },
-])
+]);
 
 const chart = {
-  type: 'candle',
+  type: "candle",
   chartData: {
     categories: [
       "09/22 周一",
@@ -66,22 +66,34 @@ const chart = {
           [0, 0, 0, 0],
         ],
       },
+      {
+        lineColor: "#f04864",
+        data: [
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [103, 101, 103, 101], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+          [0, 0, 0, 0],
+        ],
+      },
     ],
   },
   opts: {
     rotate: false,
     rotateLock: false,
     color: [
-      "#FF6C71",
-      "#FF6C71",
-      "#FF6C71",
-      "#FF6C71",
-      "#FF6C71",
+      "#1890ff",
+      "#2fc25b",
+      "#facc14",
       "#FF6C71",
       "#FF6C71",
       "#FF6C71",
       "#FF6C71",
     ],
+
     padding: [15, 4, 10, 4],
     dataLabel: false,
     enableScroll: false,
@@ -102,18 +114,21 @@ const chart = {
         },
       ],
     },
-  },
-  extra: {
-    tooltip: {
-      showBox: false,
-      splitLine: true,
-      gridColor: "#FDDEDE",
+    extra: {
+      color: {
+        upLine: "#f04864",
+        upFill: "#f04864",
+        downLine: "#2fc25b",
+        downFill: "#2fc25b",
+      },
+      tooltip: {
+        showBox: false,
+        splitLine: false,
+        gridColor: "#FDDEDE",
+      },
     },
   },
 };
-
-
-
 </script>
 
 <style lang="less">
@@ -135,6 +150,5 @@ const chart = {
       margin-right: 12rpx;
     }
   }
- 
 }
 </style>

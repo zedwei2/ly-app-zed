@@ -1,7 +1,7 @@
 <template>
   <view class="common-success-bg">
     <custom-navbar title="统计"></custom-navbar>
-    <view class="statictis" :style="'height: calc(100vh - ' + 160 + 'rpx);'">
+    <view class="statictis" :style="'height: calc(100vh - ' + 140 + 'rpx);'">
       <view class="basic-info">
         <view>
           <text class="title title1">全部患者/人</text>
@@ -30,9 +30,27 @@
         </view>
       </view>
       <view class="chart-content trend">
-        <view>
+        <view class="container">
           <text class="title">患者趋势</text>
+          <view class="custom-select">
+            <view @click="isSelectShow = !isSelectShow">
+              <text>{{ dateRange }}</text>
+              <van-icon name="arrow-down" v-if="isSelectShow" />
+              <van-icon name="arrow-up" v-else />
+            </view>
+            <view class="select-content" v-if="isSelectShow">
+              <text
+                v-for="(item, index) in range"
+                :key="index"
+                @click="selectDate(item)"
+                >{{ item.text }}</text
+              >
+            </view>
+            <!-- <uDataSelect v-model="value" :localdata="range" @change="change">
+            </uDataSelect> -->
+          </view>
         </view>
+
         <view class="trend chart">
           <patientTrend :areaData="trendData" />
         </view>
@@ -45,10 +63,17 @@
   </view>
 </template>
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import { defineAsyncComponent, reactive, ref } from "vue";
 import patientDistribution from "./components/patient-distribution.vue";
 import patientTrend from "./components/patient-trend.vue";
 import reasonAnalysis from "./components/reason-analysis.vue";
+
+const uDataSelect = defineAsyncComponent(
+  () =>
+    import(
+      "@/uni-data-select_1.0.6 (1)/components/uni-data-select/uni-data-select.vue"
+    )
+);
 
 const staticInfo = {
   totalNo: 12,
@@ -97,6 +122,24 @@ const trendData = reactive({
     },
   ],
 });
+
+const value = ref(0);
+
+const range = [
+  { value: 0, text: "半年" },
+  { value: 1, text: "一年" },
+];
+
+const dateRange = ref("半年"),
+  currentDateIndex = ref(0),
+  isSelectShow = ref(false);
+
+function selectDate(item: any) {
+  dateRange.value = item.text;
+  currentDateIndex.value = item.value;
+  isSelectShow.value = false;
+}
+
 /**因素分析数据 */
 const reasonData = reactive([
   { name: "心率异常", centerText: "50", value: 50 },
@@ -111,12 +154,18 @@ const reasonData = reactive([
 .statictis {
   overflow-y: auto;
   padding: 10px 16px;
+  position: sticky;
+  top: 160rpx;
+  z-index: 1;
+
   .basic-info {
     display: flex;
     justify-content: space-around;
+
     > view:not(:last-child) {
       margin-right: 20rpx;
     }
+
     > view {
       display: flex;
       flex-direction: column;
@@ -131,6 +180,7 @@ const reasonData = reactive([
         font-size: 24rpx;
         font-weight: 500;
       }
+
       .title1 {
         &::before {
           content: "";
@@ -144,6 +194,7 @@ const reasonData = reactive([
           border-radius: 4rpx;
         }
       }
+
       .title2 {
         &::before {
           content: "";
@@ -157,6 +208,7 @@ const reasonData = reactive([
           border-radius: 4rpx;
         }
       }
+
       .number {
         color: rgba(0, 29, 69, 0.9);
         font-size: 44rpx;
@@ -167,34 +219,71 @@ const reasonData = reactive([
       }
     }
   }
+
   .chart-content {
     background: #fff;
     border-radius: 8rpx;
     padding: 24rpx;
     margin-top: 20rpx;
+    .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .custom-select {
+        position: relative;
+        width: 100rpx;
+        .select-content {
+          position: absolute;
+          top: 40rpx;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          border: solid rgb(234, 221, 221) 1px;
+          border-radius: 8rpx;
+
+          text {
+            // border-bottom: solid 1px #d6caca;
+            padding: 4rpx 16rpx;
+            z-index: 999;
+          }
+        }
+      }
+    }
+
     .title {
       color: #242429;
       font-size: 32rpx;
       font-weight: 500;
-      line-height: 52rpx; /* 162.5% */
+      line-height: 52rpx;
+      /* 162.5% */
     }
+
     .pie-chart {
       display: flex;
-      flex-wrap: wrap; /* 允许子元素换行 */
-      justify-content: space-between; /* 水平方向均匀分布 */
+      flex-wrap: wrap;
+      /* 允许子元素换行 */
+      justify-content: space-between;
+
+      /* 水平方向均匀分布 */
       > view {
-        flex-basis: calc(50% - 10px); /* 子元素宽度占50%（减去间距） */
-        margin-bottom: 40rpx; /* 垂直方向的间距 */
-        box-sizing: border-box; /* 防止元素超出容器 */
+        flex-basis: calc(50% - 10px);
+        /* 子元素宽度占50%（减去间距） */
+        margin-bottom: 40rpx;
+        /* 垂直方向的间距 */
+        box-sizing: border-box;
+        /* 防止元素超出容器 */
         width: 50%;
       }
     }
+
     .trend {
       height: 288rpx;
     }
+
     .reason-analysis {
       width: 100%;
     }
+
     > view {
       margin-bottom: 30rpx;
     }

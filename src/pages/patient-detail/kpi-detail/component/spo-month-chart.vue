@@ -3,8 +3,14 @@
     <view class="hr-chart-title"
       ><text>{{ currentData }}</text></view
     >
-    <qiun-data-charts
+    <!-- <qiun-data-charts
       type="column"
+      :opts="optsTest"
+      :chartData="chartDataTest"
+      @getIndex="getIndex"
+    /> -->
+    <qiun-data-charts
+      type="candle"
       :opts="optsTest"
       :chartData="chartDataTest"
       @getIndex="getIndex"
@@ -102,76 +108,68 @@ const legendData = [
 ];
 
 const optsTest = {
+  rotate: false,
+  rotateLock: false,
   color: [
-    "transparent", //将最下面的柱子设置成透明颜色，显示悬浮效果
-    // "#DE4A4A",
-    // "#DE4A4A",
-    "#FE7302",
-    "#FE7302", //第二第三的颜色保持一致，造成90以下颜色统一的效果
-    "#09CCD5",
+    "#1890FF",
+    "#91CB74",
+    "#FAC858",
+    "#EE6666",
     "#73C0DE",
     "#3CA272",
     "#FC8452",
     "#9A60B4",
     "#ea7ccc",
   ],
-  padding: [15, 15, 0, 5],
-  enableScroll: false,
+  padding: [15, 15, 0, 15],
   dataLabel: false,
+  enableScroll: true,
+  enableMarkLine: true,
   legend: {
     show: false,
   },
   xAxis: {
-    disableGrid: true,
+    // disabled: true,
+    labelCount: 0,
+    gridType: "dash",
+    scrollShow: false,
   },
   yAxis: {
     gridType: "dash",
+    dashLength: 2,
     data: [
       {
-        disabled: true,
-        min: 0,
-
+        fontColor: "#92969A",
         format: "yAxisDemo1",
+        min: 0,
+        max: 100,
       },
-      // {
-      //   min: 60,
-      //   max: 100,
-      //   splitNumber: 6,
-      //   format: "yAxisDemo1",
-      // },
     ],
   },
-
   extra: {
-    column: {
-      type: "stack",
-      width: 10,
-      activeBgColor: "#000000",
-      activeBgOpacity: 0.08,
-      labelPosition: "center",
-      //圆角未生效
-      barBorderCircle: true,
-      barBorderRadius: [10, 10, 10, 10],
-    },
-    tooltip: {
-      showBox: false,
-      splitLine: false,
-      gridColor: "#FDDEDE",
-      legendShow: false,
+    candle: {
+      color: {
+        upLine: "#09CCD5",
+        upFill: "#09CCD5",
+        downLine: "#FE7302",
+        downFill: "#FE7302",
+      },
     },
     markLine: {
       type: "dash",
       dashLength: 5,
       data: [
         {
-          value: 250,
-          lineColor: "#45DDE1",
+          value: 90,
+          lineColor: "#f04864",
           showLabel: true,
           labelText: "90%",
-          labelOffsetX: 25, //标签水平位置偏移距离
-          labelFontSize: 10, //数据标签字体大小
         },
       ],
+    },
+    tooltip: {
+      show: false,
+      showBox: false,
     },
   },
 };
@@ -179,20 +177,32 @@ const chartDataTest = {
   categories: ["周一", "周二", "周三", "周四", "周五", "周六"],
   series: [
     {
-      name: "低阈值",
-      data: [80, 78, 62, 78, 80, 60],
-    },
-    {
       name: "low-data",
-      data: [80, 78, 62, 78, 80, 60],
-    },
-    {
-      name: "高阈值",
-      data: [90, 94, 126, 94, 90, 126],
+      lineColor: "#FE7302",
+      data: [
+        [60, 80, 60, 60],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [60, 90, 60, 60], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ],
     },
     {
       name: "hight-data",
-      data: [95, 96, 91, 93, 93, 94],
+      lineColor: "black",
+      data: [
+        [80, 90, 80, 90],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [95, 90, 95, 90], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+        [0, 0, 0, 0],
+      ],
     },
   ],
 };
@@ -202,7 +212,7 @@ const getIndex = (e: any) => {
   let currentIndex = e.currentIndex.index;
   let lowData = e.opts.series.find((item: any) => item.name === "low-data");
   let howData = e.opts.series.find((item: any) => item.name === "hight-data");
-  currentData.value = `${lowData.data[currentIndex]}%-${howData.data[currentIndex]}%`;
+  currentData.value = `${lowData.data[currentIndex][0]}%-${howData.data[currentIndex][1]}%`;
 };
 </script>
 

@@ -1,4 +1,14 @@
 <template>
+  <view class="show-info">
+    <view>
+      <view class="left">
+        <text>{{ currentData }}</text>
+        <text class="unit">正常高值</text>
+      </view>
+      <text>血压/mmHg</text>
+    </view>
+    <text>平均脉搏--/分钟</text>
+  </view>
   <view class="charts-box">
     <qiun-data-charts
       type="line"
@@ -29,6 +39,8 @@ const props = defineProps({
 });
 
 const { type } = toRefs(props);
+
+const currentData = ref("128/88");
 
 const getData1 = () => {
   var arr: any = [];
@@ -180,12 +192,43 @@ const chartData = ref({
 const xAxisData = ref(["00:00", "06:00", "12:00", "18:00", "24:00"]);
 const getIndex = (e: any) => {
   //拿到当前索引值跟数据匹配，对时间进行改变
-  let currentIndex = e.currentIndex;
-  console.log("e=======", optsObj.value.xData[currentIndex.index]);
+  let currentIndex = e.currentIndex.index;
+  console.log(
+    "e=======",
+    optsObj.value.xData[currentIndex],
+    optsObj.value.data1[currentIndex],
+    optsObj.value.data2[currentIndex]
+  );
+  currentData.value = `${optsObj.value.data1[currentIndex].toFixed(
+    0
+  )}/${optsObj.value.data2[currentIndex].toFixed(0)}`;
 };
 </script>
 
 <style scoped lang="less">
+.show-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #4c5056;
+  font-size: 28rpx;
+  font-weight: 400;
+  line-height: 28rpx;
+  padding: 20rpx 12rpx;
+
+  .left {
+    color: rgba(0, 29, 69, 0.9);
+    font-size: 44rpx;
+    font-weight: 700;
+    line-height: 40rpx; /* 90.909% */
+    padding: 4rpx 0;
+    .unit {
+      font-size: 28rpx;
+      font-weight: 400;
+      color: #09ccd5;
+    }
+  }
+}
 .charts-box {
   width: 100%;
   height: 100%;
