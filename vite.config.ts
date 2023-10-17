@@ -18,7 +18,7 @@ export default defineConfig({
         postCssPxToRem({
           // rootValue: 37.5, // 75表示750设计稿，37.5表示375设计稿
           // propList: ["*"], // 需要转换的属性，这里选择全部都进行转换
-          // selectorBlackList: ['norem'], // 过滤掉norem-开头的class，不进行rem转换
+          // selectorBlackList: ["norem"], // 过滤掉norem-开头的class，不进行rem转换
         }),
       ],
     },

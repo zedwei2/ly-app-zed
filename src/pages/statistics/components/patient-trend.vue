@@ -42,10 +42,17 @@ const chartData = ref({
     },
     xAxis: {
       disableGrid: true,
+      gridType: "dash",
     },
     yAxis: {
       gridType: "dash",
       dashLength: 2,
+      data: [
+        {
+          axisLine: false,
+          fontColor: "#92969A",
+        },
+      ],
     },
     extra: {
       area: {

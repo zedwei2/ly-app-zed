@@ -1,6 +1,6 @@
 import { createSSRApp } from "vue";
 import * as Pinia from "pinia";
-import Vant from "vant"
+import Vant from "vant";
 import "vant/lib/index.css";
 // import "amfe-flexible";
 

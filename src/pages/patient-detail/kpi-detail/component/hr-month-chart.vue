@@ -7,7 +7,7 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import baseChart from "./base-chart.vue";
 import tipLegend from "./tip-legend.vue";
 

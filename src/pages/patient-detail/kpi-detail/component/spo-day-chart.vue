@@ -70,6 +70,7 @@ const chart = {
       dashLength: 2,
       data: [
         {
+          axisLine: false,
           fontColor: "#92969A",
           format: "yAxisDemo1",
           min: 0,

@@ -121,10 +121,10 @@ const optsTest = {
     "#9A60B4",
     "#ea7ccc",
   ],
-  padding: [15, 15, 0, 15],
+  padding: [15, 4, 10, 4],
   dataLabel: false,
-  enableScroll: true,
-  enableMarkLine: true,
+  enableScroll: false,
+  // enableMarkLine: true,
   legend: {
     show: false,
   },
@@ -136,12 +136,13 @@ const optsTest = {
   },
   yAxis: {
     gridType: "dash",
-    dashLength: 2,
+    // dashLength: 2,
     data: [
       {
+        axisLine: false,
         fontColor: "#92969A",
         format: "yAxisDemo1",
-        min: 0,
+        min: 40,
         max: 100,
       },
     ],
@@ -149,8 +150,10 @@ const optsTest = {
   extra: {
     candle: {
       color: {
+        //上涨颜色
         upLine: "#09CCD5",
         upFill: "#09CCD5",
+        //下跌颜色
         downLine: "#FE7302",
         downFill: "#FE7302",
       },
@@ -164,6 +167,7 @@ const optsTest = {
           lineColor: "#f04864",
           showLabel: true,
           labelText: "90%",
+          labelOffsetX: -5,
         },
       ],
     },
@@ -180,10 +184,10 @@ const chartDataTest = {
       name: "low-data",
       lineColor: "#FE7302",
       data: [
-        [60, 80, 60, 60],
+        [60, 80, 60, 80],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
-        [60, 90, 60, 60], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+        [80, 90, 80, 90], // 第一个下限 第二个上限 第三个上影线 第四个下影线
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -197,7 +201,7 @@ const chartDataTest = {
         [80, 90, 80, 90],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
-        [95, 90, 95, 90], // 第一个下限 第二个上限 第三个上影线 第四个下影线
+        [95, 90, 90, 95], // 第一个下限 第二个上限 第三个上影线 第四个下影线
         [0, 0, 0, 0],
         [0, 0, 0, 0],
         [0, 0, 0, 0],
@@ -208,11 +212,11 @@ const chartDataTest = {
 };
 
 const getIndex = (e: any) => {
-  //获取档期数据的实际值
+  //获取当前数据的实际值
   let currentIndex = e.currentIndex.index;
   let lowData = e.opts.series.find((item: any) => item.name === "low-data");
-  let howData = e.opts.series.find((item: any) => item.name === "hight-data");
-  currentData.value = `${lowData.data[currentIndex][0]}%-${howData.data[currentIndex][1]}%`;
+  let hData = e.opts.series.find((item: any) => item.name === "hight-data");
+  currentData.value = `${lowData.data[currentIndex][0]}%-${hData.data[currentIndex][3]}%`;
 };
 </script>
 

@@ -101,8 +101,8 @@ watch(
 const chartData = ref({
   opts: {
     color: [
-      "#1890FF",
-      "#91CB74",
+      "#42BA3F",
+      "#FF5D63",
       "#FAC858",
       "#EE6666",
       "#73C0DE",
@@ -149,12 +149,12 @@ const chartData = ref({
         data: [
           {
             value: 140,
-            lineColor: "#f04864",
+            lineColor: "#DE4A4A ",
             showLabel: true,
           },
           {
             value: 90,
-            lineColor: "#45DDE1",
+            lineColor: "#09CCD5 ",
             showLabel: true,
           },
         ],
@@ -172,13 +172,13 @@ const chartData = ref({
     series: [
       {
         name: "高压",
-        linearColor: [
-          [0, "#1890FF"],
-          [0.25, "#00B5FF"],
-          [0.5, "#00D1ED"],
-          [0.75, "#00E6BB"],
-          [1, "#90F489"],
-        ],
+        // linearColor: [
+        //   [0, "#1890FF"],
+        //   [0.25, "#00B5FF"],
+        //   [0.5, "#00D1ED"],
+        //   [0.75, "#00E6BB"],
+        //   [1, "#90F489"],
+        // ],
         setShadow: [3, 8, 10, "#1890FF"],
         data: optsObj.value.data1,
       },
@@ -225,7 +225,7 @@ const getIndex = (e: any) => {
     .unit {
       font-size: 28rpx;
       font-weight: 400;
-      color: #09ccd5;
+      color: #45dde1;
     }
   }
 }

@@ -1,12 +1,23 @@
 <template>
   <view class="hr-chart">
     <!-- <view class="hr-chart-title"><text>65</text>次/分钟</view> -->
-    <baseChart :chart="chart" :xAxisData="xAxisData" :xAxisHasActive="false" />
+    <baseChart
+      :chart="chart"
+      :xAxisData="xAxisData"
+      :xAxisHasActive="false"
+      @getCurrentData="getCurrentData"
+    />
   </view>
 </template>
 
 <script lang="ts" setup>
 import baseChart from "./base-chart.vue";
+
+const emit = defineEmits(["getCurrentData"]);
+
+const getCurrentData = (data: string) => {
+  emit("getCurrentData", data);
+};
 
 const getData = () => {
   var arr: any = [];
