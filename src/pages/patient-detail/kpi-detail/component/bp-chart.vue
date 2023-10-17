@@ -17,13 +17,13 @@
       @getIndex="getIndex"
     />
 
-    <xaxisBar :xAxisData="xAxisData" v-if="optsObj.isXDisabled" />
+    <xaxisBar :type="type" :activeIndex="activeIndex" />
   </view>
 </template>
 
 <script setup lang="ts">
 import { ref, toRefs, watch } from "vue";
-import { onShow, onHide, onReady } from "@dcloudio/uni-app";
+
 import { dateType } from "@/core/enum/dateType";
 import xaxisBar from "./xaxis-bar.vue";
 
@@ -41,6 +41,7 @@ const props = defineProps({
 const { type } = toRefs(props);
 
 const currentData = ref("128/88");
+const activeIndex = ref<number>(0);
 
 const getData1 = () => {
   var arr: any = [];
@@ -111,13 +112,14 @@ const chartData = ref({
       "#9A60B4",
       "#ea7ccc",
     ],
-    padding: [15, 10, 0, 15],
+    padding: [10, 20, 10, 10],
     dataLabel: false,
     dataPointShape: false,
     enableScroll: false,
     legend: { show: false },
     xAxis: {
-      disabled: optsObj.value.isXDisabled,
+      // disabled: optsObj.value.isXDisabled,
+      disabled: true,
       disableGrid: true,
     },
     yAxis: {
@@ -193,12 +195,15 @@ const xAxisData = ref(["00:00", "06:00", "12:00", "18:00", "24:00"]);
 const getIndex = (e: any) => {
   //拿到当前索引值跟数据匹配，对时间进行改变
   let currentIndex = e.currentIndex.index;
+  if (currentIndex < 0) return;
+  activeIndex.value = currentIndex;
   console.log(
     "e=======",
     optsObj.value.xData[currentIndex],
     optsObj.value.data1[currentIndex],
     optsObj.value.data2[currentIndex]
   );
+  if (!optsObj.value.xData[currentIndex]) return;
   currentData.value = `${optsObj.value.data1[currentIndex].toFixed(
     0
   )}/${optsObj.value.data2[currentIndex].toFixed(0)}`;

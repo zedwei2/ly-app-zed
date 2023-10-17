@@ -11,41 +11,20 @@
       @getIndex="getIndex"
     />
 
-    <view class="custom-xaxis" v-if="xAxisHasActive">
-      <text
-        v-for="(item, key) in xAxisData"
-        :class="item.isActive ? 'active' : ''"
-        :key="key"
-        @click="onItemClick(key)"
-        >{{ item.name }}</text
-      >
-    </view>
-    <view class="custom-xaxis" v-else>
-      <text v-for="(item, key) in xAxisData" :key="key">{{ item }}</text>
-    </view>
+    <xaxisBar :type="type" :activeIndex="activeIndex" />
   </view>
   <infoCard :infoData="hrCardData" :isUnit="true" />
 </template>
 
 <script setup lang="ts">
 import { toRefs, ref, reactive, watch, computed } from "vue";
-import infoCard from "./info-card.vue";
+
 import { dateType } from "@/core/enum/dateType";
 
+import infoCard from "./info-card.vue";
+import xaxisBar from "./xaxis-bar.vue";
+
 const props = defineProps({
-  // chart: {
-  //   type: Object,
-  // },
-  // xAxisData: {
-  //   // 自定义x轴数据
-  //   type: Array<any>,
-  //   default: [],
-  // },
-  // xAxisHasActive: {
-  //   // 是否开启x轴选中效果 默认开启
-  //   type: Boolean,
-  //   default: true,
-  // },
   type: {
     type: String,
     default: "day",
@@ -54,13 +33,28 @@ const props = defineProps({
 
 // const emit = defineEmits(["getCurrentData"]);
 
-const complete = (q: any) => {
-  console.log(222, q);
-};
+/**当前选中的数据 */
+const activeIndex = ref<number>(0);
+const currentData = ref<String>("65");
+const hrCardData = reactive([
+  {
+    title: "心率范围",
+    value: "60-103",
+  },
+  {
+    title: "平均静息心率",
+    value: "68",
+  },
+  {
+    title: "心率过高",
+    value: "--",
+  },
+  {
+    title: "心率过低",
+    value: "--",
+  },
+]);
 
-const xAxisHasActive = ref<boolean>(false);
-
-// let { xAxisData, type, chart } = toRefs(props);
 let { type } = toRefs(props);
 const getData = () => {
   var arr: any = [];
@@ -204,93 +198,28 @@ const chart2 = {
     },
   },
 };
-const chart = ref();
-/**x轴相关 */
-const xAxisData = ref();
+
+/**以日为周期和以其他时间轴为周期图表配置不同 */
+const chart = computed(() => {
+  return type.value === dateType.Day ? chart1 : chart2;
+});
 
 watch(
   () => type.value,
-  (val) => {
-    if (val === dateType.Day) {
-      chart.value = chart1;
-      xAxisData.value = ["00:00", "06:00", "12:00", "18:00", "24:00"];
-    } else if (val === dateType.Week) {
-      chart.value = chart2;
-      xAxisData.value = [
-        "09/22 周一",
-        "09/23 周二",
-        "09/24 周三",
-        "09/25 周四",
-        "09/26 周五",
-        "09/27 周六",
-        "09/28 周天",
-      ];
-    } else {
-      xAxisData.value = [
-        "1",
-        "2",
-        "3",
-        "4",
-        "5",
-        "6",
-        "7",
-        "8",
-        "9",
-        "10",
-        "11",
-        "12",
-      ];
-    }
+  () => {
+    activeIndex.value = 0;
   },
-  { immediate: true }
+  {
+    immediate: true,
+  }
 );
 
-const currentData = ref<String>("65");
-const hrCardData = reactive([
-  {
-    title: "心率范围",
-    value: "60-103",
-  },
-  {
-    title: "平均静息心率",
-    value: "68",
-  },
-  {
-    title: "心率过高",
-    value: "--",
-  },
-  {
-    title: "心率过低",
-    value: "--",
-  },
-]);
-
 /**
- * 更新x轴选中数据状态
- * @param currentIndex
- */
-const xAxisDataUpdate = (currentIndex: number) => {
-  xAxisData.value = xAxisData.value?.map((item: any, k: number) => {
-    item.isActive = currentIndex === k;
-    return item;
-  });
-};
-
-/**
- * 自定义x轴点击事件
- * @param key
- */
-const onItemClick = (key: number) => {
-  // 暂时关闭 未找到点击x轴 选中对应数据的方法
-  // xAxisDataUpdate(key)
-};
-
-/**
- * 点击自定义x轴 动态变色
+ * 点击图表与x轴和展示数据联动
  * @param val
  */
 const getIndex = (val: any) => {
-  console.log(val, !props.xAxisHasActive);
+  if (val.currentIndex.index < 0) return;
   //获取当前点击的图表数据
   let currentItem = val.opts.series[0].data[val.currentIndex.index];
   if (type.value === "day") {
@@ -300,13 +229,7 @@ const getIndex = (val: any) => {
   }
   hrCardData[0].value = currentData.value.toString();
   // emit("getCurrentData", currentData.value);
-
-  //未开启x轴选中效果 则退出
-  if (!props.xAxisHasActive) return;
-
-  if (val.currentIndex.index === -1) return;
-
-  xAxisDataUpdate(val.currentIndex.index);
+  activeIndex.value = val.currentIndex.index;
 };
 </script>
 
@@ -335,24 +258,5 @@ const getIndex = (val: any) => {
   border: 2rpx solid #e9eef0;
   padding: 32rpx 10rpx 20rpx 0;
   border-radius: 20rpx;
-}
-.custom-xaxis {
-  display: flex;
-  margin-left: 60rpx;
-  text-align: center;
-  justify-content: space-around;
-  color: #92969a;
-  font-size: 24rpx;
-  font-weight: 500;
-  line-height: 40rpx; /* 166.667% */
-
-  text {
-    min-width: 32rpx;
-    &.active {
-      color: #fff;
-      border-radius: 8rpx;
-      background: linear-gradient(180deg, #ff5d63 0%, #de4a4a 100%);
-    }
-  }
 }
 </style>
