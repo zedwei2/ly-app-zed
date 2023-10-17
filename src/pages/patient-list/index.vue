@@ -22,7 +22,7 @@
             :class="{ active: isActive === index }"
             @click="changeTab(index)"
           >
-            {{ item.title }}({{ item.number }}人) 
+            {{ item.title }}({{ item.number }}人)
           </view>
         </view>
       </view>
@@ -216,7 +216,6 @@ const searchName = ref("");
 
 /**名称搜索 */
 const onSearch = (val: string) => {
-  console.log(val, 2222);
   paientList.value = [];
 };
 

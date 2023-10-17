@@ -46,8 +46,6 @@
                 >{{ item.text }}</text
               >
             </view>
-            <!-- <uDataSelect v-model="value" :localdata="range" @change="change">
-            </uDataSelect> -->
           </view>
         </view>
 
@@ -67,13 +65,6 @@ import { defineAsyncComponent, reactive, ref } from "vue";
 import patientDistribution from "./components/patient-distribution.vue";
 import patientTrend from "./components/patient-trend.vue";
 import reasonAnalysis from "./components/reason-analysis.vue";
-
-const uDataSelect = defineAsyncComponent(
-  () =>
-    import(
-      "@/uni-data-select_1.0.6 (1)/components/uni-data-select/uni-data-select.vue"
-    )
-);
 
 const staticInfo = {
   totalNo: 12,
