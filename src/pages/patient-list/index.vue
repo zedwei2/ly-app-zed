@@ -4,12 +4,17 @@
     :class="warningNo === 0 ? 'common-success-bg' : 'common-warning-bg'"
   >
     <view class="top-info">
-      <van-search
-        v-model="searchName"
-        placeholder="搜索患者名字"
-        @search="onSearch"
-        background="rgba(236, 238, 244, 0.2)"
-      />
+      <view class="search-input">
+        <image src="~@/static/patient-list/search.png" mode="scaleToFill" />
+        <input
+          confirm-type="search"
+          placeholder="搜索患者名字"
+          v-model="searchName"
+          @keyup.13="onSearch"
+          @input="onSearch"
+          placeholder-style="color: #fff"
+        />
+      </view>
       <view class="warning-info">
         <text class="number">{{ warningNo }}</text>
         <text>当前预警人数</text>
@@ -260,19 +265,17 @@ const callPhone = (mobile: string) => {
     padding: 24rpx 32rpx 48rpx;
     color: #fff;
     margin-top: 64rpx;
-    > .van-search {
-      padding: 0;
-      width: 100%;
-      border-radius: 12rpx;
+    .search-input {
       background: rgba(236, 238, 244, 0.2);
-      :deep(.van-search__content) {
-        background: rgba(236, 238, 244, 0.2);
-      }
-      :deep(.van-field__left-icon) {
-        color: #fff;
-      }
-      :deep(.van-field__control::-webkit-input-placeholder) {
-        color: #fff;
+      padding: 8px 0px;
+      width: 100%;
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      > image {
+        height: 14px;
+        width: 14px;
+        margin: 0 3px 0 12px;
       }
     }
 
