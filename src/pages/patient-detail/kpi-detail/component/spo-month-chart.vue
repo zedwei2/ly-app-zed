@@ -3,26 +3,13 @@
     <view class="hr-chart-title"
       ><text>{{ currentData }}</text></view
     >
-    <!-- <qiun-data-charts
-      type="column"
-      :opts="optsTest"
-      :chartData="chartDataTest"
-      @getIndex="getIndex"
-    /> -->
     <qiun-data-charts
       type="candle"
       :opts="optsTest"
       :chartData="chartDataTest"
       @getIndex="getIndex"
     />
-    <view class="custom-xaxis" v-if="type === 'day'">
-      <text
-        v-for="item in xAxisData"
-        :class="item.isActive ? 'active' : ''"
-        :key="item.name"
-        >{{ item.name }}</text
-      >
-    </view>
+    <xaxisBar :type="type" />
     <tipLegend :tipData="legendData" />
   </view>
 </template>
@@ -30,6 +17,7 @@
 <script lang="ts" setup>
 import { ref, toRefs } from "vue";
 import tipLegend from "./tip-legend.vue";
+import xaxisBar from "./xaxis-bar.vue";
 
 const props = defineProps({
   type: {
@@ -37,6 +25,8 @@ const props = defineProps({
     default: "day",
   },
 });
+
+const emit = defineEmits(["getCurrentData"]);
 const { type } = toRefs(props);
 
 const currentData = ref("89%-100%");
@@ -129,7 +119,7 @@ const optsTest = {
     show: false,
   },
   xAxis: {
-    // disabled: true,
+    disabled: true,
     labelCount: 0,
     gridType: "dash",
     scrollShow: false,
@@ -217,6 +207,7 @@ const getIndex = (e: any) => {
   let lowData = e.opts.series.find((item: any) => item.name === "low-data");
   let hData = e.opts.series.find((item: any) => item.name === "hight-data");
   currentData.value = `${lowData.data[currentIndex][0]}%-${hData.data[currentIndex][3]}%`;
+  emit("getCurrentData", currentData.value);
 };
 </script>
 

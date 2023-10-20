@@ -8,7 +8,7 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import dateBar from "./component/date-bar.vue";
-import baseChart from "./component/base-chart.vue";
+import baseChart from "./component/hr-base-chart.vue";
 
 const activeType = ref("day"),
   currentDate = ref();

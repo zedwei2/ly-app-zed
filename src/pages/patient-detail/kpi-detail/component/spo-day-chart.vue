@@ -1,25 +1,33 @@
 <template>
   <view class="hr-chart">
-    <view class="hr-chart-title">平均血氧<text>98%</text></view>
+    <view class="hr-chart-title"
+      >平均血氧<text>{{ currentData }}</text></view
+    >
     <qiun-data-charts
       type="column"
       :opts="chart.opts"
       :chartData="chart.chartData"
+      @getIndex="getIndex"
     />
+    <xaxisBar type="day" />
 
-    <view class="custom-xaxis">
-      <text v-for="item in xAxisData" :key="item">{{ item }}</text>
-    </view>
     <tipLegend :tipData="legendData" />
   </view>
 </template>
 
 <script lang="ts" setup>
+import { ref } from "vue";
+
 import tipLegend from "./tip-legend.vue";
+import xaxisBar from "./xaxis-bar.vue";
+
+const emit = defineEmits(["getCurrentData"]);
+const currentData = ref<string>("98%");
+
 const getData = () => {
   var arr: any = [];
   var q = 1597910400000;
-  for (var i = 1; i < 100; i += 15) {
+  for (var i = 1; i < 100; i += 10) {
     arr.push([q - i * 3600 * 1000, Math.random() * 5 + 80]);
     q = q - i * 3600 * 1000;
   }
@@ -51,7 +59,7 @@ const chart = {
       "#9A60B4",
       "#ea7ccc",
     ],
-    padding: [15, 4, 10, 4],
+    padding: [10, 0, 10, 0],
     dataLabel: false,
     dataPointShape: false,
     legend: {
@@ -96,7 +104,6 @@ const chart = {
   },
 };
 
-const xAxisData = ["00:00", "06:00", "12:00", "18:00", "24:00"];
 const legendData = [
   {
     name: "<70%",
@@ -115,6 +122,13 @@ const legendData = [
     icon: "tips",
   },
 ];
+
+/**获取当前图表点击数据 */
+const getIndex = (e: any) => {
+  let currentIndex = e.currentIndex.index;
+  currentData.value = `${e.opts.series[0].data[currentIndex].toFixed(0)}%`;
+  emit("getCurrentData", currentData.value);
+};
 </script>
 
 <style lang="less">

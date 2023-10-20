@@ -226,7 +226,15 @@ const onSearch = (val: string) => {
 
 /**切换tab */
 const changeTab = (index: number) => {
+  console.log(2);
+  if (isActive.value === index) return;
   isActive.value = index;
+  if (isActive.value === 0) {
+    console.log(222);
+  } else if (isActive.value === 1) {
+    paientList.value = paientList.value.filter((item) => item.isFocus);
+  }
+  console.log(isActive.value);
 };
 
 const goToDetail = (item: any) => {
