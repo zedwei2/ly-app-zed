@@ -59,23 +59,7 @@
               </view>
             </view>
             <view class="right">
-              <!-- <image
-                :src="`@/static/patient-list/${
-                  item.isFocus ? 'focus' : 'unfocus'
-                }.png`"
-              /> -->
-              <image
-                v-if="item.isFocus"
-                src="@/static/patient-list/focus.png"
-              />
-              <image v-else src="@/static/patient-list/unfocus.png" />
-              <text>关注</text>
-              <image
-                src="@/static/patient-list/call.png"
-                mode="scaleToFill"
-                @click="callPhone(item.phone)"
-              />
-              <text>呼叫</text>
+              <FocusCall :isFocus="item.isFocus" :phone="item.phone" />
             </view>
           </view>
           <view class="health-info">
@@ -101,6 +85,8 @@
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
 import { forward } from "@/utils/router";
+
+import FocusCall from "@/components/focus-call/index.vue";
 
 /**当前预警人数*/
 const warningNo = ref<number>(0);
@@ -226,7 +212,6 @@ const onSearch = (val: string) => {
 
 /**切换tab */
 const changeTab = (index: number) => {
-  console.log(2);
   if (isActive.value === index) return;
   isActive.value = index;
   if (isActive.value === 0) {
@@ -239,23 +224,6 @@ const changeTab = (index: number) => {
 
 const goToDetail = (item: any) => {
   forward("patient-detail", { id: item.index });
-};
-
-/**拨打电话 */
-const callPhone = (mobile: string) => {
-  //手机号
-  const phoneReg = /^[1][3,4,5,7,8][0-9]{9}$/;
-  //座机
-  const tel = /^0\d{2,3}-?\d{7,8}$/;
-  if (
-    mobile &&
-    ((Number(mobile) === 11 && phoneReg.test(mobile)) ||
-      (mobile.length == 13 && mobile.indexOf("-") != -1 && tel.test(mobile)))
-  ) {
-    uni.makePhoneCall({
-      phoneNumber: mobile,
-    });
-  }
 };
 </script>
 
@@ -395,6 +363,7 @@ const callPhone = (mobile: string) => {
           justify-content: space-around;
           background: #f5f5f9;
           padding: 16rpx 20rpx;
+          border-radius: 8rpx;
 
           > view {
             display: flex;

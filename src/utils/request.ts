@@ -21,7 +21,9 @@ function reject(err: { errno: number; errmsg: string }) {
 }
 
 // h5环境开启代理
-const apiBaseUrl = isH5 && isDevelopment ? "/api" : env.apiBaseUrl;
+// const apiBaseUrl = isH5 && isDevelopment ? "/api" : env.apiBaseUrl;
+const apiBaseUrl = env.apiBaseUrl;
+console.log("env.apiBaseUrl", env.apiBaseUrl);
 
 /**请求拦截 */
 uni.addInterceptor("request", {

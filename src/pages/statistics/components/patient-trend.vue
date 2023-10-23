@@ -57,7 +57,7 @@ const chartData = ref({
     extra: {
       area: {
         type: "straight",
-        opacity: 0.2,
+        opacity: 0.3,
         addLine: true,
         width: 2,
         gradient: true,

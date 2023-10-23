@@ -38,6 +38,7 @@
               <van-icon name="arrow-down" v-if="isSelectShow" />
               <van-icon name="arrow-up" v-else />
             </view>
+
             <view class="select-content" v-if="isSelectShow">
               <text
                 v-for="(item, index) in range"
@@ -61,7 +62,11 @@
   </view>
 </template>
 <script lang="ts" setup>
-import { defineAsyncComponent, reactive, ref } from "vue";
+import { reactive, ref } from "vue";
+import { onShow, onHide, onReady } from "@dcloudio/uni-app";
+
+import apiTest from "@/api/apiTest";
+
 import patientDistribution from "./components/patient-distribution.vue";
 import patientTrend from "./components/patient-trend.vue";
 import reasonAnalysis from "./components/reason-analysis.vue";
@@ -139,6 +144,17 @@ const reasonData = reactive([
   { name: "血氧饱和度", centerText: "18", value: 18, labelText: "四班:18人" },
   { name: "其他", centerText: "8", value: 8, labelShow: false },
 ]);
+
+const postTest = async () => {
+  const postTest = await apiTest.postTest({ a: 1 });
+  if (!postTest) return;
+  // postTest.data?.val
+  console.log(postTest, "postTest");
+};
+
+onShow(() => {
+  // postTest();
+});
 </script>
 
 <style scoped lang="less">
@@ -222,19 +238,26 @@ const reasonData = reactive([
       align-items: center;
       .custom-select {
         position: relative;
-        width: 100rpx;
+        color: #4c5056;
+        font-size: 28rpx;
+        font-weight: 400;
+        line-height: 22px; /* 157.143% */
         .select-content {
+          z-index: 99;
           position: absolute;
-          top: 40rpx;
+          top: 45rpx;
+          left: -30rpx;
           display: flex;
           flex-direction: column;
           align-items: center;
-          border: solid rgb(234, 221, 221) 1px;
+          background-color: #fff;
+          box-shadow: 0px 1px 4px 3px rgba(0, 0, 0, 0.1);
           border-radius: 8rpx;
 
           text {
-            // border-bottom: solid 1px #d6caca;
-            padding: 4rpx 16rpx;
+            text-align: center;
+            width: 140rpx;
+            padding: 6rpx 10rpx;
             z-index: 999;
           }
         }

@@ -22,6 +22,17 @@ const { reasonData } = toRefs(props);
 
 const chartData = ref({
   opts: {
+    // color: [
+    //   "#3AD9DE",
+    //   "#43B9BE",
+    //   "#FF9F18",
+    //   "#5579EA",
+    //   "#9968D4",
+    //   "#3CA272",
+    //   "#FC8452",
+    //   "#9A60B4",
+    //   "#ea7ccc",
+    // ],
     color: [
       "#1890FF",
       "#91CB74",
@@ -47,8 +58,8 @@ const chartData = ref({
         borderColor: "#FFFFFF",
         fillOpacity: 1,
         labelAlign: "right",
-        linearType: "custom",
-        minSize: 20,
+        linearType: "custom", //渐变效果
+        // minSize: 20,
       },
       markLine: {
         showLabel: false, // 启用标签显示

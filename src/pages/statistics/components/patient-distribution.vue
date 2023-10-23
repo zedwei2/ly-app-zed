@@ -67,7 +67,7 @@ const chartData = ref({
         type: "circle",
         width: 9,
         backgroundColor: "#D7E4EB",
-        startAngle: 1,
+        startAngle: 1.5,
         endAngle: 0.25,
         gap: 2,
       },
