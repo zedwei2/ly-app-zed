@@ -1,29 +1,32 @@
-export default defineStore({
-  id: "user",
+import { defineStore } from "pinia";
+
+interface UserInfo {
+  token: string;
+  userId: Number;
+}
+export const userInfoStore = defineStore("userInfo", {
   state: () => {
     return {
       userInfo: {
         token: "token",
-        user_id: 111,
+        userId: 111,
       },
-    } as {
-      userInfo: User.UserInfo;
     };
   },
   getters: {
     logged: (state) => {
-      const { token, user_id } = state.userInfo;
-      return !!(token && user_id);
+      const { token, userId } = state.userInfo;
+      return !!(token && userId);
     },
     token: (state) => {
       return state.userInfo.token;
     },
     userId: (state) => {
-      return state.userInfo.user_id;
+      return state.userInfo.userId;
     },
   },
   actions: {
-    setUserInfo(userInfo: User.UserInfo) {
+    setUserInfo(userInfo: UserInfo) {
       Object.assign(this.userInfo, userInfo);
     },
   },

@@ -153,7 +153,7 @@ const postTest = async () => {
 };
 
 onShow(() => {
-  // postTest();
+  postTest();
 });
 </script>
 

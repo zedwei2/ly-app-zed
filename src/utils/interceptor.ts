@@ -1,4 +1,6 @@
 import { toLogin } from "./router";
+import { userInfoStore } from "@/store/user";
+
 const whiteList = [
   "/pages/login/index",
   "/pages/login/components/user-agreement",
@@ -7,9 +9,11 @@ const whiteList = [
 const list = ["navigateTo", "reLaunch", "switchTab"];
 
 function hasPermission(url: string) {
-  const usrObj = uni.getStorageSync("userInfo");
-  // 在白名单中或有token，直接跳转
-  if (whiteList.indexOf(url) !== -1 || (usrObj && JSON.parse(usrObj).token)) {
+  const useStore = userInfoStore();
+  const logged = useStore.logged;
+
+  // 在白名单中或已登录，直接跳转
+  if (whiteList.indexOf(url) !== -1 || logged) {
     return true;
   }
   return false;

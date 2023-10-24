@@ -45,6 +45,9 @@
 import { forward } from "@/utils/router";
 import { ref } from "vue";
 
+import { userInfoStore } from "@/store/user";
+const userStore = userInfoStore();
+
 const userToAgree = {
   userAgreement: `《用户服务协议》`,
   privacy: `《隐私政策》`,
@@ -53,14 +56,16 @@ const isChecked = ref<boolean>(true);
 
 const login = () => {
   let userInfo = {
-    userId: "1",
+    userId: 111,
     token: "xxx",
   };
-  uni.setStorageSync("userInfo", JSON.stringify(userInfo));
-  // forward("patient");
-  uni.switchTab({
-    url: "/pages/patient-list/index",
-  });
+  userStore.setUserInfo(userInfo);
+
+  // uni.setStorageSync("userInfo", JSON.stringify(userInfo));
+  forward("patient");
+  // uni.switchTab({
+  //   url: "/pages/patient-list/index",
+  // });
 };
 
 // 打开用户协议页面
