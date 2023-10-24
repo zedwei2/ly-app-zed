@@ -4,13 +4,15 @@
       <text v-for="(item, key) in xAxisData" :key="key">{{ item }}</text>
     </view>
     <view v-else>
-      <text
-        v-for="(item, index) in xAxisData"
-        :class="activeIndex === index ? 'active' : ''"
-        :key="index"
-        @click="onItemClick(index)"
-        >{{ item }}</text
-      >
+      <view v-for="(item, index) in xAxisData">
+        <text
+          :class="activeIndex === index ? 'active' : ''"
+          :key="index"
+          @click="onItemClick(index)"
+          >{{ item.date }}</text
+        >
+        <text> {{ item.week }} </text>
+      </view>
     </view>
   </view>
 </template>
@@ -43,13 +45,13 @@ watch(
       xAxisData.value = ["00:00", "06:00", "12:00", "18:00", "24:00"];
     } else if (val === dateType.Week) {
       xAxisData.value = [
-        "09/22 周一",
-        "09/23 周二",
-        "09/24 周三",
-        "09/25 周四",
-        "09/26 周五",
-        "09/27 周六",
-        "09/28 周天",
+        { date: "09/22", week: "周一" },
+        { date: "09/23", week: "周二" },
+        { date: "09/24", week: "周三" },
+        { date: "09/25", week: "周四" },
+        { date: "09/26", week: "周五" },
+        { date: "09/27", week: "周六" },
+        { date: "09/28", week: "周天" },
       ];
     } else if (val === dateType.Month) {
       xAxisData.value = [
@@ -106,6 +108,7 @@ const onItemClick = (key: number) => {
     font-size: 20rpx;
     font-weight: 500;
     // line-height: 40rpx; /* 166.667% */
+    text-align: center;
     text {
       text-align: center;
       &.active {

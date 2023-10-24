@@ -1,5 +1,5 @@
 <template>
-  <view>
+  <view class="date-select-nav">
     <view class="date-nav">
       <view
         class="navTitle"
@@ -26,6 +26,8 @@
         <van-icon name="arrow-left" size="12" color="#333333" />
       </template>
     </van-nav-bar>
+
+    <view class="selected-time">{{ selectedTime }}</view>
   </view>
 </template>
 
@@ -44,8 +46,9 @@ const weekList = {
     6: "星期六",
     0: "星期天",
   },
-  showCurrentTime = ref(""),
-  currentTime = ref();
+  showCurrentTime = ref<string>(""),
+  currentTime = ref(),
+  selectedTime = ref<string>("");
 const dateList = [
     { key: "day", label: "日", index: 0 },
     { key: "week", label: "周", index: 1 },
@@ -73,7 +76,9 @@ const handleDate = (intialTime: any, type: string) => {
 
   switch (type) {
     case "day":
-      showCurrentTime.value = `${month}月${day}日/${weekList[week]}  ${time}`;
+      // showCurrentTime.value = `${month}月${day}日/${weekList[week]}  ${time}`;
+      showCurrentTime.value = `${month}月${day}日/${weekList[week]}`;
+      selectedTime.value = `${time}`;
       break;
     case "week":
       //获取当周时间段
@@ -82,13 +87,19 @@ const handleDate = (intialTime: any, type: string) => {
       let end_time = week_time.endOf("week").add(1, "day").format("DD");
       //跨月的情况
       let end_month = week_time.endOf("week").add(1, "day").format("MM");
-      showCurrentTime.value = `${month}月${start_time}日-${end_month}月${end_time}日  ${month}月${day}日`;
+      // showCurrentTime.value = `${month}月${start_time}日-${end_month}月${end_time}日  ${month}月${day}日`;
+      showCurrentTime.value = `${month}月${start_time}日-${end_month}月${end_time}日`;
+      selectedTime.value = `${month}月${day}日`;
       break;
     case "month":
-      showCurrentTime.value = `${month}月 -${month}月${day}日`;
+      // showCurrentTime.value = `${month}月 -${month}月${day}日`;
+      showCurrentTime.value = `${month}月`;
+      selectedTime.value = `${month}月${day}日`;
       break;
     case "year":
-      showCurrentTime.value = `${year}年 -${month}月`;
+      // showCurrentTime.value = `${year}年 -${month}月`;
+      showCurrentTime.value = `${year}年`;
+      selectedTime.value = `${month}月`;
       break;
   }
 };
@@ -163,6 +174,12 @@ getCurrentTime();
     color: #fff;
     border-radius: 12px;
   }
+}
+.selected-time {
+  font-size: 14px;
+  font-weight: 700;
+  text-align: center;
+  color: #45dde1;
 }
 </style>
 <style lang="less">

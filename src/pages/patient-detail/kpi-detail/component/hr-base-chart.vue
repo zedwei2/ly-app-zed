@@ -1,9 +1,9 @@
 <template>
-  <view class="hr-chart-title"
-    ><text>{{ currentData }}</text
-    ><text class="unit">次/分钟</text></view
-  >
   <view class="chart-content">
+    <view class="hr-chart-title"
+      ><text>{{ currentData }}</text
+      ><text class="unit">次/分钟</text></view
+    >
     <qiun-data-charts
       :type="chart?.type"
       :opts="chart?.opts"
@@ -239,7 +239,6 @@ const getIndex = (val: any) => {
   font-size: 20rpx;
   line-height: 44rpx;
   text-align: center;
-  margin-bottom: 16rpx;
   text {
     color: rgba(0, 29, 69, 0.9);
     font-size: 60rpx;

@@ -35,10 +35,7 @@
         <view class="content-time-title">
           <text class="title">实时数据</text>
           <text class="view">查看趋势</text>
-          <image
-            src="@/static/patient-detail/title-arrow.png"
-            mode="aspectFit"
-          />
+          <van-icon name="arrow" size="12" color="#333333" />
         </view>
         <view class="content-time-body">
           <view

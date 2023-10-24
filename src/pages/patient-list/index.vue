@@ -32,7 +32,12 @@
         </view>
       </view>
 
-      <view v-if="paientList.length">
+      <scroll-view
+        v-if="paientList.length"
+        :style="'height: calc(100vh - ' + 500 + 'rpx);'"
+        scroll-y="true"
+        @scrolltolower="getMore"
+      >
         <view
           v-for="(item, index) in paientList"
           :key="index"
@@ -72,7 +77,7 @@
             </view>
           </view>
         </view>
-      </view>
+      </scroll-view>
 
       <view v-else class="empty-data">
         <image src="@/static/empty-data.png" mode="scaleToFill" />
@@ -140,6 +145,58 @@ const paientList = ref([
     sbp: 120,
   },
   {
+    name: "李四",
+    //是否关注
+    isFocus: false,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "李四",
+    //是否关注
+    isFocus: false,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "李四",
+    //是否关注
+    isFocus: false,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "李四",
+    //是否关注
+    isFocus: false,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
     name: "王五",
     //是否关注
     isFocus: true,
@@ -167,6 +224,71 @@ const paientList = ref([
   },
   {
     name: "田七",
+    //是否关注
+    isFocus: true,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "田七",
+    //是否关注
+    isFocus: true,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "田七",
+    //是否关注
+    isFocus: true,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "田七",
+    //是否关注
+    isFocus: true,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "田七",
+    //是否关注
+    isFocus: true,
+    //心率
+    hr: 95,
+    //血氧浓度
+    spo: 95,
+    //血压
+    bp: 80,
+    //收缩压
+    sbp: 120,
+  },
+  {
+    name: "田七1",
     //是否关注
     isFocus: true,
     //心率
@@ -225,6 +347,10 @@ const changeTab = (index: number) => {
 const goToDetail = (item: any) => {
   forward("patient-detail", { id: item.index });
 };
+
+const getMore = () => {
+  console.log("到底部了~");
+};
 </script>
 
 <style scoped lang="less">
@@ -232,7 +358,7 @@ const goToDetail = (item: any) => {
   display: flex;
   flex-direction: column;
   height: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
   .top-info {
     display: flex;
     flex-direction: column;
