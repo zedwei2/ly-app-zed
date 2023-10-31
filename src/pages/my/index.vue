@@ -31,6 +31,9 @@
 import { toLogin } from "@/utils/router";
 import noPNG from "@/static/my/No.png";
 import phonePng from "@/static/my/phone.png";
+import userInfoStore from "@/store/user";
+
+const userStore = userInfoStore();
 
 const userInfo = {
   name: "王桃花",
@@ -49,7 +52,8 @@ const usrDetail = [
 ];
 
 const logout = () => {
-  uni.removeStorageSync("userInfo");
+  // uni.removeStorageSync("userInfo");
+  userStore.setUserInfo({ token: "", userId: 0 });
   toLogin();
 };
 </script>

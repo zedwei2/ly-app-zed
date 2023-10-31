@@ -51,7 +51,7 @@
         </view>
 
         <view class="trend chart">
-          <patientTrend :areaData="trendData" />
+          <patientTrend :dateRange="dateRange" />
         </view>
         <text class="title">因素分析</text>
         <view class="reason-analysis chart">
@@ -71,89 +71,82 @@ import patientDistribution from "./components/patient-distribution.vue";
 import patientTrend from "./components/patient-trend.vue";
 import reasonAnalysis from "./components/reason-analysis.vue";
 
+/**统计数据 */
 const staticInfo = {
-  totalNo: 12,
-  warningNo: 2,
-};
-
-/**高血压数据 */
-const hbpData = reactive({
-  color: "#00BDC6",
-  rate: 0.24,
-  name: "高血压",
-  total: 12,
-  countHealth: 2,
-});
-/**低血压数据 */
-const lbpData = reactive({
-  color: "#FF9F18",
-  rate: 0.08,
-  name: "低血压",
-  total: 12,
-  countHealth: 2,
-});
-/***心率高数据 */
-const hhrData = reactive({
-  color: "#FF5D63",
-  rate: 0.34,
-  name: "心率高",
-  total: 12,
-  countHealth: 2,
-});
-/**心率低数据 */
-const lhrData = reactive({
-  color: "#AE73FF",
-  rate: 0.44,
-  name: "心率低",
-  total: 12,
-  countHealth: 2,
-});
-
-/**患者趋势数据 */
-const trendData = reactive({
-  categories: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月"],
-  series: [
-    {
-      data: [35, 38, 35, 37, 24, 30, 28, 25, 37],
-    },
+    totalNo: 12,
+    warningNo: 2,
+  },
+  /**高血压数据 */
+  hbpData = reactive({
+    color: "#00BDC6",
+    rate: 0.24,
+    name: "高血压",
+    total: 12,
+    countHealth: 2,
+  }),
+  /**低血压数据 */
+  lbpData = reactive({
+    color: "#FF9F18",
+    rate: 0.08,
+    name: "低血压",
+    total: 12,
+    countHealth: 2,
+  }),
+  /***心率高数据 */
+  hhrData = reactive({
+    color: "#FF5D63",
+    rate: 0.34,
+    name: "心率高",
+    total: 12,
+    countHealth: 2,
+  }),
+  /**心率低数据 */
+  lhrData = reactive({
+    color: "#AE73FF",
+    rate: 0.44,
+    name: "心率低",
+    total: 12,
+    countHealth: 2,
+  }),
+  /**因素分析数据 */
+  reasonData = reactive([
+    { name: "心率异常", centerText: "50", value: 50 },
+    { name: "血糖异常", centerText: "30", value: 30, labelShow: false },
+    { name: "血压异常", centerText: "20", value: 20, labelShow: false },
+    { name: "血氧饱和度", centerText: "18", value: 18, labelText: "四班:18人" },
+    { name: "其他", centerText: "8", value: 8, labelShow: false },
+  ]),
+  /**时间范围选择 */
+  range = [
+    { value: 0, text: "半年" },
+    { value: 1, text: "一年" },
   ],
-});
-
-const value = ref(0);
-
-const range = [
-  { value: 0, text: "半年" },
-  { value: 1, text: "一年" },
-];
-
-const dateRange = ref("半年"),
+  dateRange = ref("半年"),
   currentDateIndex = ref(0),
   isSelectShow = ref(false);
 
-function selectDate(item: any) {
+/**
+ * 下拉选择时间
+ * @param item 选择的时间
+ */
+const selectDate = (item: any) => {
   dateRange.value = item.text;
   currentDateIndex.value = item.value;
   isSelectShow.value = false;
-}
+};
 
-/**因素分析数据 */
-const reasonData = reactive([
-  { name: "心率异常", centerText: "50", value: 50 },
-  { name: "血糖异常", centerText: "30", value: 30, labelShow: false },
-  { name: "血压异常", centerText: "20", value: 20, labelShow: false },
-  { name: "血氧饱和度", centerText: "18", value: 18, labelText: "四班:18人" },
-  { name: "其他", centerText: "8", value: 8, labelShow: false },
-]);
-
-const postTest = async () => {
-  const postTest = await apiTest.postTest({ a: 1 });
+/**
+ * 获取患者分布数据
+ *
+ */
+const getDistributionData = async () => {
+  const postTest = await apiTest.getTest({ a: 1 });
   if (!postTest) return;
-  // postTest.data?.val
-  console.log(postTest, "postTest");
+  console.log("postTest=====", postTest);
 };
 
 onShow(() => {
-  postTest();
+  getDistributionData();
 });
 </script>
 

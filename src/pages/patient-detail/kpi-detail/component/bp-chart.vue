@@ -212,7 +212,7 @@ const chartData = ref({
         //   [0.75, "#00E6BB"],
         //   [1, "#90F489"],
         // ],
-        setShadow: [3, 8, 10, "#1890FF"],
+        // setShadow: [3, 8, 10, "#1890FF"],
         data: optsObj.value.data1,
       },
       {

@@ -4,12 +4,13 @@ interface UserInfo {
   token: string;
   userId: Number;
 }
-export const userInfoStore = defineStore("userInfo", {
+const userInfoStore = defineStore("userInfo", {
+  persist: true, //开启持久化
   state: () => {
     return {
       userInfo: {
-        token: "token",
-        userId: 111,
+        token: "",
+        userId: null,
       },
     };
   },
@@ -31,3 +32,5 @@ export const userInfoStore = defineStore("userInfo", {
     },
   },
 });
+
+export default userInfoStore;

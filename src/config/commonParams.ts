@@ -1,4 +1,4 @@
-import { userInfoStore } from "@/store/user";
+import userInfoStore from "@/store/user";
 
 const commonParams = {
   isLoading: true,
@@ -9,11 +9,6 @@ export function getCommonParams() {
   const useStore = userInfoStore();
   const token = useStore.token;
   const userId = useStore.userId;
-
-  // const userInfo = uni.getStorageSync("userInfo");
-
-  // const { token, userId } = userInfo;
-  console.log("token==token==", token, userId);
   return Object.assign(
     { token: token, uuid: userId, timestamp: Date.now() },
     commonParams

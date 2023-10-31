@@ -31,7 +31,6 @@ const onDataChange = (type: string) => {
 };
 
 const getCurrentData = (data: any) => {
-  console.log("data====", data);
   spoCardData[1].value = data;
 };
 </script>

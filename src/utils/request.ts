@@ -23,14 +23,13 @@ function reject(err: { errno: number; errmsg: string }) {
 // h5环境开启代理
 // const apiBaseUrl = isH5 && isDevelopment ? "/api" : env.apiBaseUrl;
 const apiBaseUrl = env.apiBaseUrl;
-console.log("env.apiBaseUrl", env.apiBaseUrl);
 
 /**请求拦截 */
-uni.addInterceptor("request", {
-  invoke(args) {
-    args.url = apiBaseUrl + args.url;
-  },
-});
+// uni.addInterceptor("request", {
+//   invoke(args) {
+//     args.url = apiBaseUrl + args.url;
+//   },
+// });
 
 function baseRequest(
   method:
@@ -51,6 +50,7 @@ function baseRequest(
     delete data.isLoading;
     let responseDate: unknown;
     uni.request({
+      // url: apiBaseUrl + url,
       url: apiBaseUrl + url,
       method,
       timeout: 20000,
@@ -59,6 +59,7 @@ function baseRequest(
           method === "GET"
             ? "application/json; charset=utf-8"
             : "application/x-www-form-urlencoded",
+        ...getCommonParams(),
       },
       data,
       success: (res: any) => {
@@ -93,12 +94,12 @@ function baseRequest(
 const http = {
   get: <T>(api: string, params: any) =>
     baseRequest("GET", api, {
-      ...getCommonParams(),
+      // ...getCommonParams(),
       ...params,
     }) as Http.Response<T>,
   post: <T>(api: string, params: any) =>
     baseRequest("POST", api, {
-      ...getCommonParams(),
+      // ...getCommonParams(),
       ...params,
     }) as Http.Response<T>,
 };

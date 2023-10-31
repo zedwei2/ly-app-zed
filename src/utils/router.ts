@@ -1,6 +1,6 @@
 import { isFastClick, parseUrl, restoreUrl } from "./shared";
 import { getUrlType, h5HsqMap, whiteList, pagesMap } from "./urlMap";
-import { userInfoStore } from "@/store/user";
+import userInfoStore from "@/store/user";
 
 export function onUrlPage(e: any) {
   if (isFastClick()) return;

@@ -1,5 +1,5 @@
 import { toLogin } from "./router";
-import { userInfoStore } from "@/store/user";
+import userInfoStore from "@/store/user";
 
 const whiteList = [
   "/pages/login/index",
@@ -24,7 +24,7 @@ list.forEach((item) => {
     // 页面跳转前进行拦截, invoke根据返回值进行判断是否继续执行跳转
 
     invoke(e) {
-      console.log("e========", e, hasPermission(e.url));
+      console.log("hasPermission========", e, hasPermission(e.url));
       if (!hasPermission(e.url)) {
         // 将用户的目标路径保存下来
         // 这样可以实现 用户登录之后，直接跳转到目标页面

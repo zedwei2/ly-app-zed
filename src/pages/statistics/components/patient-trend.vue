@@ -12,13 +12,27 @@
 import { ref, toRefs } from "vue";
 
 const props = defineProps({
-  areaData: {
-    type: Object,
-    default: [],
+  // areaData: {
+  //   type: Object,
+  //   default: [],
+  // },
+
+  /**所选时间范围 */
+  dateRange: {
+    type: String,
   },
 });
 
-const { areaData } = toRefs(props);
+// const { areaData } = toRefs(props);
+
+const trendData = ref({
+  categories: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月"],
+  series: [
+    {
+      data: [35, 38, 35, 37, 24, 30, 28, 25, 37],
+    },
+  ],
+});
 
 const chartData = ref({
   opts: {
@@ -65,7 +79,7 @@ const chartData = ref({
       },
     },
   },
-  data: areaData.value,
+  data: trendData.value,
 });
 </script>
 

@@ -45,7 +45,7 @@
 import { forward } from "@/utils/router";
 import { ref } from "vue";
 
-import { userInfoStore } from "@/store/user";
+import userInfoStore from "@/store/user";
 const userStore = userInfoStore();
 
 const userToAgree = {
@@ -57,15 +57,12 @@ const isChecked = ref<boolean>(true);
 const login = () => {
   let userInfo = {
     userId: 111,
-    token: "xxx",
+    token:
+      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVJZHMiOiJbMSw0N10iLCJpc3MiOiIyMiIsImV4cCI6MTY5ODE3Njg0NCwiaWF0IjoxNjk4MTQ4MDQ0fQ.8G-f23pyLyO8LOiU6xyUYKvpMkTcn0s9oLbJXtoxh94",
   };
   userStore.setUserInfo(userInfo);
 
-  // uni.setStorageSync("userInfo", JSON.stringify(userInfo));
   forward("patient");
-  // uni.switchTab({
-  //   url: "/pages/patient-list/index",
-  // });
 };
 
 // 打开用户协议页面

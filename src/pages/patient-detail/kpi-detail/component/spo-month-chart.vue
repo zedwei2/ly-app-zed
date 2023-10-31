@@ -127,6 +127,7 @@ const optsTest = {
   yAxis: {
     gridType: "dash",
     // dashLength: 2,
+    splitNumber: 6, //横向网格数量
     data: [
       {
         axisLine: false,
@@ -140,12 +141,12 @@ const optsTest = {
   extra: {
     candle: {
       color: {
-        //上涨颜色
-        upLine: "#09CCD5",
-        upFill: "#09CCD5",
-        //下跌颜色
-        downLine: "#FE7302",
-        downFill: "#FE7302",
+        //上涨颜色-90以下的颜色
+        upLine: "#FD7704",
+        upFill: "#FD7704",
+        //下跌颜色-90以上的颜色
+        downLine: "#42BA3F",
+        downFill: "#42BA3F",
       },
     },
     markLine: {

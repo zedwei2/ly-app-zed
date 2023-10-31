@@ -337,9 +337,10 @@ const changeTab = (index: number) => {
   if (isActive.value === index) return;
   isActive.value = index;
   if (isActive.value === 0) {
-    console.log(222);
   } else if (isActive.value === 1) {
     paientList.value = paientList.value.filter((item) => item.isFocus);
+  } else {
+    paientList.value = [];
   }
   console.log(isActive.value);
 };
