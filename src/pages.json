@@ -80,6 +80,20 @@
 				"style":{
 					"navigationBarTitleText": "隐私政策"
 				}
+			},
+			{
+				"name":"set-up",
+				"path":"my/components/set-up",
+				"style":{
+					"navigationBarTitleText": "设置"
+				}
+			},
+			{
+				"name":"about-us",
+				"path":"my/components/about-us/about-us",
+				"style":{
+					"navigationBarTitleText": "关于"
+				}
 			}
 		  ]
 		}

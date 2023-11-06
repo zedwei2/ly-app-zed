@@ -1,35 +1,14 @@
-import { isDevelopment, isH5 } from "./platform";
-import { forward } from "./router";
 import { getCommonParams } from "@/config/commonParams";
 import env from "@/config/env";
 import { hideLoading, showLoading } from "@/config/serviceLoading";
+import userInfoStore from "@/store/user";
+import common from "@/utils/common";
+import userService from "@/services/user.service";
+import { ResponseCode } from "@/core/enum/response";
+import type { ResponseDTO } from "@/core/enum/response";
 
-function reject(err: { errno: number; errmsg: string }) {
-  const { errmsg = "服务器异常，请稍后", errno = -1 } = err;
-  switch (errno) {
-    case 10000:
-      // 特殊异常处理
-      forward("login");
-      break;
-
-    default:
-      uni.showToast({
-        title: errmsg,
-      });
-      break;
-  }
-}
-
-// h5环境开启代理
-// const apiBaseUrl = isH5 && isDevelopment ? "/api" : env.apiBaseUrl;
-const apiBaseUrl = env.apiBaseUrl;
-
-/**请求拦截 */
-// uni.addInterceptor("request", {
-//   invoke(args) {
-//     args.url = apiBaseUrl + args.url;
-//   },
-// });
+import { isDevelopment, isH5 } from "./platform";
+import { forward } from "./router";
 
 function baseRequest(
   method:
@@ -45,46 +24,40 @@ function baseRequest(
   url: string,
   data: { isLoading: any }
 ) {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     showLoading(data.isLoading);
     delete data.isLoading;
     let responseDate: unknown;
     uni.request({
-      // url: apiBaseUrl + url,
-      url: apiBaseUrl + url,
+      url: url,
       method,
       timeout: 20000,
       header: {
-        "content-type":
-          method === "GET"
-            ? "application/json; charset=utf-8"
-            : "application/x-www-form-urlencoded",
+        "content-type": "application/json; charset=utf-8",
         ...getCommonParams(),
       },
       data,
       success: (res: any) => {
-        if (res.statusCode >= 200 && res.statusCode < 400) {
-          if (res.data.errno === 0) {
-            responseDate = res.data;
+        if (common.isNotBlank(res.header.token)) {
+          // 更新token（当token快过期时，接口会返回新的token，在此处替换）
+          userService.updateToken(res.header.token);
+        }
+        if (res?.statusCode === 200) {
+          const code = res.data.errno;
+          if (code === ResponseCode.SUCCESS) {
+            return resolve(res.data);
+          } else if (code === 103) {
+            userService.logout();
+            return;
           } else {
-            reject(res.data);
+            return reject(res.data);
           }
-        } else {
-          reject({
-            errno: -1,
-            errmsg: "服务器异常，稍候片刻！",
-          });
         }
       },
-      fail: () => {
-        reject({
-          errno: -1,
-          errmsg: "网络不给力，请检查你的网络设置~",
-        });
+      fail: (err) => {
+        return reject(err);
       },
       complete: (data) => {
-        console.log(data, "data");
-        resolve(responseDate);
         hideLoading();
       },
     });
@@ -92,16 +65,14 @@ function baseRequest(
 }
 
 const http = {
-  get: <T>(api: string, params: any) =>
+  get: <T>(api: string, params?: any) =>
     baseRequest("GET", api, {
-      // ...getCommonParams(),
       ...params,
-    }) as Http.Response<T>,
-  post: <T>(api: string, params: any) =>
+    }),
+  post: <T>(api: string, params?: any) =>
     baseRequest("POST", api, {
-      // ...getCommonParams(),
       ...params,
-    }) as Http.Response<T>,
+    }),
 };
 
 export default http;

@@ -1,60 +1,64 @@
 <template>
   <view class="my common-success-bg">
     <view class="top-info">
-      <image class="touxiang" src="@/static/patient-list/touxiang.png" />
+      <image class="touxiang" :src="imgBaseUrl + user.icon" />
       <view>
-        <text class="name">{{ userInfo.name }}</text>
-        <text class="identity">{{ userInfo.identity }}</text>
+        <text class="name">{{ user.name }}</text>
+        <text class="identity" v-for="role in roles">{{ role }}</text>
       </view>
     </view>
     <view class="content common-content-bg">
-      <view v-for="(item, index) in usrDetail" :key="index" class="item">
+      <view
+        v-for="(item, index) in usrDetail"
+        :key="index"
+        class="item"
+        @click="item.key === 'setting' ? openSet() : null"
+      >
         <view class="left">
           <image :src="item.icon" />
           <text>{{ item.name }}</text>
         </view>
         <view class="right">
-          <text>{{ userInfo[item.key] }}</text>
+          <text>{{ user[item.key] }}</text>
           <image src="@/static/right-arrow.png" />
         </view>
-      </view>
-
-      <view class="more">
-        <van-button @click="logout">退出登录（临时）</van-button>
-        <van-button>拓展功能2</van-button>
       </view>
     </view>
   </view>
 </template>
 
 <script lang="ts" setup>
-import { toLogin } from "@/utils/router";
+import { ref } from "vue";
 import noPNG from "@/static/my/No.png";
 import phonePng from "@/static/my/phone.png";
+import settingPng from "@/static/my/setting.png";
 import userInfoStore from "@/store/user";
+import { forward } from "@/utils/router";
+import global from "@/utils/global";
 
+const imgBaseUrl = global.urls.fileUrl;
 const userStore = userInfoStore();
 
-const userInfo = {
-  name: "王桃花",
-  identity: "门诊部医师",
-  No: "007",
-  phone: "17356841563",
-};
+const uniStore = JSON.parse(uni.getStorageSync("userInfo"));
+const user = userStore.user;
+const roles = ref([]);
+roles.value = user.roles.map((item: any) => item.name);
 
 const usrDetail = [
-  { key: "No", name: "工号", icon: noPNG },
+  { key: "id", name: "工号", icon: noPNG },
   {
     key: "phone",
     name: "手机号码",
     icon: phonePng,
   },
+  {
+    key: "setting",
+    name: "设置",
+    icon: settingPng,
+  },
 ];
-
-const logout = () => {
-  // uni.removeStorageSync("userInfo");
-  userStore.setUserInfo({ token: "", userId: 0 });
-  toLogin();
+const openSet = () => {
+  forward("set-up");
 };
 </script>
 
@@ -113,7 +117,7 @@ const logout = () => {
       .right {
         font-weight: 400;
         font-size: 30rpx;
-        color: #92969a;
+        color: #bbbec2;
         > image {
           margin-left: 20rpx;
           width: 12rpx;

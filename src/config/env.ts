@@ -2,13 +2,15 @@ const apiEnv: ApiEnv = "dev";
 
 const envMap = {
   dev: {
-    baseUrl: "https://api.test.zhlttech.com",
-    apiBaseUrl: "https://api.test.zhlttech.com",
+    baseUrl: "http://192.168.0.121:18082/api",
+    apiBaseUrl: "http://192.168.0.121:18082/api",
+    appUrl: "http://192.168.0.121:18082",
   },
 
   prod: {
     baseUrl: "https://m.xxx.com",
     apiBaseUrl: "https://m.api.xxx.com",
+    appUrl: "http://192.168.0.121:18082",
   },
 };
 

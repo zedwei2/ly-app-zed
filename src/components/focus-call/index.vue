@@ -1,36 +1,42 @@
 <template>
   <view class="focus-call-wrapper">
     <image
-      v-if="isFocus"
+      v-if="patientInfo.Subscribe"
       src="@/static/patient-list/focus.png"
       mode="scaleToFill"
+      @click="onFocus(true)"
     />
-    <image v-else src="@/static/patient-list/unfocus.png" mode="scaleToFill" />
+    <image
+      v-else
+      src="@/static/patient-list/unfocus.png"
+      mode="scaleToFill"
+      @click="onFocus(false)"
+    />
     <view>关注</view>
     <image
       src="@/static/patient-list/call.png"
       mode="scaleToFill"
-      @click="callPhone(phone)"
+      @click="callPhone(patientInfo.phone)"
     />
     <view>呼叫</view>
   </view>
 </template>
 <script setup lang="ts">
+import { toRefs } from "vue";
+
 /**
  * 定义传入组件的参数
  */
-defineProps({
-  isFocus: {
+const props = defineProps({
+  patientInfo: {
     // 是否关注
-    type: Boolean,
-    default: false,
-  },
-  phone: {
-    // 电话号码
-    type: String,
-    default: "",
+    type: Object,
+    default: {},
   },
 });
+
+const { patientInfo } = toRefs(props);
+const emit = defineEmits(["handleFocus"]);
 
 /**
  * 拨打电话
@@ -50,6 +56,11 @@ const callPhone = (mobile: string) => {
       phoneNumber: mobile,
     });
   }
+};
+
+/**关注/取消关注 */
+const onFocus = (isCancel: boolean) => {
+  emit("handleFocus", { id: patientInfo.value["_id"], isCancel: isCancel });
 };
 </script>
 

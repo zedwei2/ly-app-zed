@@ -15,7 +15,7 @@
           ><text>男</text><text class="icon">|</text><text>27岁</text></view
         >
       </view>
-      <FocusCall :is-focus="false" :phone="'123456'" />
+      <!-- <FocusCall :is-focus="false" :phone="'123456'" /> -->
     </view>
     <view class="patient-detail-content">
       <view class="detail-content-medical">
@@ -34,8 +34,6 @@
       <view class="detail-content-time">
         <view class="content-time-title">
           <text class="title">实时数据</text>
-          <text class="view">查看趋势</text>
-          <van-icon name="arrow" size="12" color="#333333" />
         </view>
         <view class="content-time-body">
           <view

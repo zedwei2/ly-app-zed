@@ -55,8 +55,8 @@ const cfu = {
   //下面是自定义format配置，因除H5端外的其他端无法通过props传递函数，只能通过此属性对应下标的方式来替换
   "formatter":{
     "yAxisDemo1":function(val, index, opts){return val+'%'},
-	  "yAxisDemo2": function (val, index, opts) { return val.toFixed(2) },
-	  "yAxisDemo3": function (val, index, opts) {
+	"yAxisDemo2": function (val, index, opts) { return val.toFixed(2) },
+	"yAxisDemo3": function (val, index, opts) {
 		//   console.log(opts,'val----', val, index)
 		//   if (val <= 90) {
 		// 	  console.log(1,val)
@@ -72,7 +72,11 @@ const cfu = {
     "xAxisDemo1":function(val, index, opts){return val+'年';},
     "xAxisDemo2":function(val, index, opts){return formatDateTime(val,'h:m')},
     "xAxisDemo3":function(val, index, opts){return val},
-    "seriesDemo1":function(val, index, series, opts){return val+'元'},
+	"seriesDemo1": function (val, index, series, opts) { return val + '元' },
+	"tooltipRing1": function (item, category, index, opts) {
+		  //自定义tooltip
+		return item.name+':'+item.value+'%'
+	},
     "tooltipDemo1":function(item, category, index, opts){
       if(index==0){
       	return '随便用'+item.data+'年'

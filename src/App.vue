@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { onShow, onHide, onReady } from "@dcloudio/uni-app";
+import { onShow, onHide, onReady, onLoad, onLaunch } from "@dcloudio/uni-app";
+import userInfoStore from "./store/user";
+
 onReady(() => {
   console.log("App onReady");
-  let { token } = JSON.parse(uni.getStorageSync("userInfo"));
-  if (token) {
+});
+onLaunch(() => {
+  console.log("App onLaunch");
+  const useStore = userInfoStore();
+  const logged = useStore.logged;
+  const uniStore = JSON.parse(uni.getStorageSync("userInfo"));
+  //在app里拿不到piana的数据，取uniapp的缓存
+  if (!logged && uniStore?.token) {
+    useStore.setUserInfo({ token: uniStore.token, user: uniStore.user });
+  }
+  if (logged || uniStore.token) {
     //存在则关闭启动页进入首页
     plus.navigator.closeSplashscreen();
   } else {
@@ -15,9 +26,6 @@ onReady(() => {
       },
     });
   }
-});
-onShow(() => {
-  console.log("App Show");
 });
 onHide(() => {
   console.log("App Hide");

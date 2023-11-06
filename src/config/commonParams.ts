@@ -6,11 +6,16 @@ const commonParams = {
 
 /**获取token和用户信息,后续可能改成store存储 */
 export function getCommonParams() {
+  const uniStore = JSON.parse(uni.getStorageSync("userInfo"));
   const useStore = userInfoStore();
   const token = useStore.token;
-  const userId = useStore.userId;
+  const uesrId = useStore.userId;
   return Object.assign(
-    { token: token, uuid: userId, timestamp: Date.now() },
+    {
+      token: token || uniStore?.token,
+      uuid: uesrId || uniStore?.user?.id,
+      timestamp: Date.now(),
+    },
     commonParams
   );
 }

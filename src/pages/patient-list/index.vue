@@ -1,7 +1,7 @@
 <template>
   <view
     class="patient-list"
-    :class="warningNo === 0 ? 'common-success-bg' : 'common-warning-bg'"
+    :class="isActive !== 2 ? 'common-success-bg' : 'common-warning-bg'"
   >
     <view class="top-info">
       <view class="search-input">
@@ -10,13 +10,13 @@
           confirm-type="search"
           placeholder="搜索患者名字"
           v-model="searchName"
-          @keyup.13="onSearch"
-          @input="onSearch"
+          @keyup.13="filertData"
+          @confirm="filertData"
           placeholder-style="color: #fff"
         />
       </view>
       <view class="warning-info">
-        <text class="number">{{ warningNo }}</text>
+        <text class="number">{{ warningPatientTotal }}</text>
         <text>当前预警人数</text>
       </view>
     </view>
@@ -42,17 +42,20 @@
           v-for="(item, index) in paientList"
           :key="index"
           class="list-item"
-          @click="goToDetail(item)"
         >
           <view class="basic-info">
             <view class="left">
               <image
                 class="touxiang"
-                src="@/static/patient-list/touxiang.png"
+                :src="
+                  item.photo
+                    ? imgBaseUrl + item.photo
+                    : global.default.portraitUrl
+                "
                 mode="scaleToFill"
               />
               <view>
-                <text>{{ item.name }}</text>
+                <text>{{ item.PatientName }}</text>
                 <text v-if="item.labels">
                   <text
                     v-for="(el, i) in item.labels"
@@ -64,15 +67,17 @@
               </view>
             </view>
             <view class="right">
-              <FocusCall :isFocus="item.isFocus" :phone="item.phone" />
+              <FocusCall :patientInfo="item" @handleFocus="handleFocus" />
             </view>
           </view>
-          <view class="health-info">
+          <view class="health-info" @click="goToDetail(item)">
             <view class="data">
               <view v-for="(el, i) in detailList" :key="i">
-                <text class="number">{{ item[el.key] }}</text>
+                <view>
+                  <text class="number">{{ item[el.key] || "--" }}</text>
+                  <text class="unit">{{ el.unit }}</text>
+                </view>
                 <text class="name">{{ el.name }}</text>
-                <text class="unit">{{ el.unit }}</text>
               </view>
             </view>
           </view>
@@ -81,7 +86,7 @@
 
       <view v-else class="empty-data">
         <image src="@/static/empty-data.png" mode="scaleToFill" />
-        <text>暂无预警患者</text>
+        <text>暂无数据</text>
       </view>
     </view>
   </view>
@@ -89,260 +94,143 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from "vue";
-import { forward } from "@/utils/router";
+import { onShow, onHide, onReady } from "@dcloudio/uni-app";
 
+import twinsService from "@/api/twins-service";
 import FocusCall from "@/components/focus-call/index.vue";
+import { forward } from "@/utils/router";
+import global from "@/utils/global";
 
+const modelCode = "MyocardialInfarctionRevision";
+const imgBaseUrl = global.urls.fileUrl;
 /**当前预警人数*/
-const warningNo = ref<number>(0);
+const warningPatientTotal = ref<number>(0);
 const isActive = ref(0),
-  navList = [
+  navList = ref([
     {
       index: 0,
       title: "全部患者",
       number: 12,
+      key: "patientTotal",
     },
     {
       index: 1,
       title: "关注患者",
       number: 2,
+      key: "subscriberCount",
     },
     {
       index: 2,
       title: "预警患者",
       number: 0,
+      key: "warningPatientTotal",
     },
-  ];
+  ]);
 
 /**患者列表 */
-const paientList = ref([
-  {
-    name: "张三",
-    img: "",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-    labels: ["心率偏高", "血压偏高"],
-  },
-  {
-    name: "李四",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "李四",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "李四",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "李四",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "李四",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "王五",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "赵六",
-    //是否关注
-    isFocus: false,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-  {
-    name: "田七1",
-    //是否关注
-    isFocus: true,
-    //心率
-    hr: 95,
-    //血氧浓度
-    spo: 95,
-    //血压
-    bp: 80,
-    //收缩压
-    sbp: 120,
-  },
-]);
+const paientList = ref([]);
 
 const detailList = reactive([
   {
-    key: "hr",
+    key: "HeartRate",
     name: "心率",
     unit: "次/分",
   },
   {
-    key: "spo",
+    key: "SpO2",
     name: "血氧浓度",
     unit: "次/分",
   },
   {
-    key: "bp",
+    key: "BloodPressure",
     name: "血压",
     unit: "mmol/L",
   },
   {
-    key: "sbp",
-    name: "收缩压",
+    key: "RespiratoryRate",
+    name: "呼吸频率",
+    unit: "次/分",
+  },
+  {
+    key: "BloodSugar",
+    name: "血糖",
     unit: "mmHg",
   },
 ]);
 
 const searchName = ref("");
-
-/**名称搜索 */
-const onSearch = (val: string) => {
-  paientList.value = [];
+/** 表格数据 */
+const tableData = ref([]),
+  /** 表格分页信息 */
+  pagination = { current: 1, pageSize: 999, total: 0 };
+/** 查询表格数据 */
+const onQuery = (filters?: any[]) => {
+  twinsService
+    .getTwinsIns({
+      modelCode: modelCode,
+      pageNo: pagination.current,
+      pageSize: pagination.pageSize,
+      propertyFilters: filters,
+    })
+    .then((res) => {
+      const data = (res as any)?.data;
+      if (data.data) {
+        paientList.value = data.data;
+        pagination.total = data.totalCount;
+      } else {
+        paientList.value = [];
+        pagination.total = 0;
+      }
+    })
+    .finally(() => {});
 };
 
+/**查询患者统计数据
+ * @returns
+ */
+const queryData = () => {
+  twinsService
+    .queryPatientStatic()
+    .then((res: any) => {
+      warningPatientTotal.value = res.data.warningPatientTotal;
+      navList.value.forEach((item) => {
+        item.number = res.data[item.key];
+      });
+    })
+    .catch((err: any) => {});
+};
+
+const filertData = () => {
+  let filters = [];
+  if (searchName.value) {
+    filters.push({
+      propertyCode: "PatientName",
+      propertyType: "LIKE",
+      propertyValue: searchName.value,
+    });
+  }
+  if (isActive.value === 1) {
+    //查询关注列表
+    filters.push({
+      propertyCode: "Subscriber",
+      propertyType: "IN",
+      propertyValue: 1,
+    });
+  } else if (isActive.value === 2) {
+    //查询预警列表
+    filters.push({
+      propertyCode: "Warning",
+      propertyValue: null,
+      propertyType: "NOT_EMPTY_ARRAY",
+    });
+  }
+  onQuery(filters);
+};
 /**切换tab */
 const changeTab = (index: number) => {
   if (isActive.value === index) return;
   isActive.value = index;
-  if (isActive.value === 0) {
-  } else if (isActive.value === 1) {
-    paientList.value = paientList.value.filter((item) => item.isFocus);
-  } else {
-    paientList.value = [];
-  }
-  console.log(isActive.value);
+  filertData();
 };
 
 const goToDetail = (item: any) => {
@@ -350,8 +238,32 @@ const goToDetail = (item: any) => {
 };
 
 const getMore = () => {
-  console.log("到底部了~");
+  console.log("到底部了~,待后续做分页处理");
 };
+
+/**关注/取消关注 */
+const handleFocus = (info: any) => {
+  if (info.isCancel) {
+    twinsService
+      .getUnsubscribe(info.id)
+      .then((res) => {
+        onQuery();
+      })
+      .catch((err) => {});
+  } else {
+    twinsService
+      .getSubscribe(info.id)
+      .then((res) => {
+        onQuery();
+      })
+      .catch((err) => {});
+  }
+};
+
+onShow(() => {
+  onQuery();
+  queryData();
+});
 </script>
 
 <style scoped lang="less">
@@ -488,7 +400,7 @@ const getMore = () => {
         .data {
           display: flex;
           justify-content: space-around;
-          background: #f5f5f9;
+          // background: #f5f5f9;
           padding: 16rpx 20rpx;
           border-radius: 8rpx;
 
@@ -504,11 +416,10 @@ const getMore = () => {
             }
             .name {
               font-size: 24rpx;
-              color: #4c5056;
+              color: #a3a8ad;
               font-weight: 400;
             }
             .unit {
-              color: #a3a8ad;
               font-size: 20rpx;
               font-weight: 400;
             }

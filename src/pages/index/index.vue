@@ -11,7 +11,6 @@
 import { ref } from "vue";
 const title = ref("Hello");
 const toLogin = () => {
-  console.log("点击事件");
   uni.navigateTo({
     url: "/pages/patient-list/index",
   });

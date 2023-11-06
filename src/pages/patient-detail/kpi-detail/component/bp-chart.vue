@@ -227,12 +227,6 @@ const getIndex = (e: any) => {
   let currentIndex = e.currentIndex.index;
   if (currentIndex < 0) return;
   activeIndex.value = currentIndex;
-  console.log(
-    "e=======",
-    optsObj.value.xData[currentIndex],
-    optsObj.value.data1[currentIndex],
-    optsObj.value.data2[currentIndex]
-  );
   if (!optsObj.value.xData[currentIndex]) return;
   currentData.value = `${optsObj.value.data1[currentIndex].toFixed(
     0

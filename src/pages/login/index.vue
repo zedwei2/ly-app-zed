@@ -15,13 +15,27 @@
       <form>
         <view class="uni-form-item uni-column">
           <view class="title">账号</view>
-          <input class="uni-input" name="input" placeholder="请输入您的账号" />
+          <input
+            class="uni-input"
+            name="input"
+            placeholder="请输入您的账号"
+            v-model="formObj.account"
+          />
         </view>
         <view class="uni-form-item uni-column">
           <view class="title">密码</view>
-          <input class="uni-input" name="input" placeholder="请输入您的密码" />
+          <input
+            class="uni-input"
+            name="input"
+            placeholder="请输入您的密码"
+            v-model="formObj.password"
+          />
         </view>
-        <button type="primary" @click="login" :disabled="!isChecked">
+        <button
+          type="primary"
+          @click="login"
+          :disabled="!isChecked || !formObj.account || !formObj.password"
+        >
           立即登录
         </button>
       </form>
@@ -42,11 +56,22 @@
 </template>
 
 <script lang="ts" setup>
+import { ref, reactive } from "vue";
+import type { UnwrapRef } from "vue";
+
 import { forward } from "@/utils/router";
-import { ref } from "vue";
+
+import platformService from "@/api/platform-service";
+import userService from "@/services/user.service";
 
 import userInfoStore from "@/store/user";
-const userStore = userInfoStore();
+
+interface FormState {
+  account?: string;
+  password?: string;
+  captcha?: string;
+  uuid?: string;
+}
 
 const userToAgree = {
   userAgreement: `《用户服务协议》`,
@@ -54,15 +79,26 @@ const userToAgree = {
 };
 const isChecked = ref<boolean>(true);
 
-const login = () => {
-  let userInfo = {
-    userId: 111,
-    token:
-      "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhZG1pbiIsInJvbGVJZHMiOiJbMSw0N10iLCJpc3MiOiIyMiIsImV4cCI6MTY5ODE3Njg0NCwiaWF0IjoxNjk4MTQ4MDQ0fQ.8G-f23pyLyO8LOiU6xyUYKvpMkTcn0s9oLbJXtoxh94",
-  };
-  userStore.setUserInfo(userInfo);
+const formObj: UnwrapRef<FormState> = reactive({});
 
-  forward("patient");
+/**登录 */
+const login = async () => {
+  platformService
+    .login(
+      formObj.account as string,
+      formObj.password as string,
+      formObj.uuid as string
+    )
+    .then((res) => {
+      userService.login((res as any)?.data);
+      forward("patient");
+    })
+    .catch((e) => {
+      uni.showToast({
+        title: e.errmsg,
+        icon: "error",
+      });
+    });
 };
 
 // 打开用户协议页面
